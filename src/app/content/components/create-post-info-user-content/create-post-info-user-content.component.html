@@ -3,8 +3,8 @@
   <section class="section-1">
     <h1 class="title">Datos de Contacto</h1>
     <mat-label>Nombre</mat-label><input matInput [value]="user?.name" disabled>
-    <mat-label>Correo electronico</mat-label><input matInput [value]="user?.email" disabled>
-    <mat-label>Telefono</mat-label><input matInput [value]="user?.phone" disabled><br>
+    <mat-label>Correo electronico</mat-label><input matInput [value]="user?.username" disabled>
+    <mat-label>Telefono</mat-label><input matInput [value]="user?.phoneNumber" disabled><br>
 
     <mat-label>Pais</mat-label>
     <select formControlName="country" (change)="onCountrySelectionChange()">

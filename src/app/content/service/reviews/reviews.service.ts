@@ -13,7 +13,7 @@ export class ReviewsService {
   constructor(private http:HttpClient) { }
 
   getReviews(){
-    return this.http.get(`${this.baseUrl}/api/v1/reviews`)
+    return this.http.get(`${this.baseUrl}/api/v2/reviews`)
   }
 
   postReview(data: any): Observable<any>{

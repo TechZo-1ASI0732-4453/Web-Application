@@ -31,12 +31,12 @@
         <mat-card *ngIf="user">
           <mat-card-header>
             <mat-card-title>
-              <img [src]="user.img" alt="User image" width="120" height="120">
+              <img [src]="user.profilePicture" alt="User image" width="120" height="120">
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <h1>{{ user.name }}</h1>
-            <h3>{{ user.email }}</h3>
+            <h3>{{ user.username }}</h3>
             <div class="publisher-raiting">
               <div class="stars-score">
                 <ng-container *ngFor="let star of getStarRating(averageScore)">

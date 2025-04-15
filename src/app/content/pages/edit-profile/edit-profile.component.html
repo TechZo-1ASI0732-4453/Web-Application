@@ -12,7 +12,7 @@
       <mat-card-header>
         <div class="container-avatar">
         <button class="button-edit-profile-image" (click)="changeImage()" mat-button><mat-icon>edit</mat-icon></button>
-          <img [src]="user['img']" alt="User img" class="user-img">
+          <img [src]="user.profilePicture" alt="User img" class="user-img">
         </div>
       </mat-card-header>
       <mat-card-content class="content-header">
@@ -49,13 +49,13 @@
             <div class="form-outline mb-4">
               <mat-label><b>Correo electrónico</b></mat-label>
               <input
-                [class.border-danger]="(editProfileForm.controls['email'].errors && (editProfileForm.controls['email'].touched || submitted))"
-                formControlName="email"
+                [class.border-danger]="(editProfileForm.controls['username'].errors && (editProfileForm.controls['username'].touched || submitted))"
+                formControlName="username"
                 type="email"
                 class="mat-input-element"/>
-              <div *ngIf="(editProfileForm.controls['email'].touched || submitted) && editProfileForm.controls['email'].getError('required')" class="required">
+              <div *ngIf="(editProfileForm.controls['username'].touched || submitted) && editProfileForm.controls['username'].getError('required')" class="required">
               </div>
-              <div *ngIf="editProfileForm.controls['email'].touched && editProfileForm.controls['email'].getError('validEmail')" class="required">
+              <div *ngIf="editProfileForm.controls['username'].touched && editProfileForm.controls['username'].getError('validEmail')" class="required">
                 Por favor, introduce un correo electrónico válido.
               </div>
             </div>
@@ -63,20 +63,20 @@
             <div class="form-outline mb-4">
               <mat-label><b>Teléfono</b></mat-label>
               <input
-                [class.border-danger]="editProfileForm.controls['phone'].errors && (editProfileForm.controls['phone'].touched || submitted)"
-                formControlName="phone"
+                [class.border-danger]="editProfileForm.controls['phoneNumber'].errors && (editProfileForm.controls['phoneNumber'].touched || submitted)"
+                formControlName="phoneNumber"
                 type="tel"
                 maxlength="9"
                 class="mat-input-element"/>
-              <div *ngIf="(editProfileForm.controls['phone'].touched || submitted) && editProfileForm.controls['phone'].getError('required')" class="required">
+              <div *ngIf="(editProfileForm.controls['phoneNumber'].touched || submitted) && editProfileForm.controls['phoneNumber'].getError('required')" class="required">
                 Teléfono es requerido.
               </div>
-              <div *ngIf="(editProfileForm.controls['phone'].touched || submitted) && editProfileForm.controls['phone'].getError('onlyNumbers')" class="required">
+              <div *ngIf="(editProfileForm.controls['phoneNumber'].touched || submitted) && editProfileForm.controls['phoneNumber'].getError('onlyNumbers')" class="required">
               </div>
-              <div *ngIf="(editProfileForm.controls['phone'].touched || submitted) && editProfileForm.controls['phone'].getError('minlength')" class="required">
+              <div *ngIf="(editProfileForm.controls['phoneNumber'].touched || submitted) && editProfileForm.controls['phoneNumber'].getError('minlength')" class="required">
                 Ingrese un Teléfono valido.
               </div>
-              <div *ngIf="(editProfileForm.controls['phone'].touched || submitted) && editProfileForm.controls['phone'].getError('maxlength')" class="required">
+              <div *ngIf="(editProfileForm.controls['phoneNumber'].touched || submitted) && editProfileForm.controls['phoneNumber'].getError('maxlength')" class="required">
               </div>
             </div>
 
@@ -113,11 +113,11 @@
               </div>
 
               <button mat-button type="button" (click)="onChangePassword()" class="button">
-                <b>Cambiar Contraseña</b>
+                Cambiar Contraseña
               </button>
 
               <button mat-button type="button" (click)="forgotPassword()" class="button-change-password">
-                <span><b>Olvidé mi contraseña</b></span>
+                <span>Olvidé mi contraseña</span>
               </button>
 
             </form>
@@ -128,7 +128,7 @@
           <button mat-button type="button" (click)="closeSession()" class="button-close-session">
             <div class="close-session">
               <mat-icon fontIcon="exit_to_app"></mat-icon>
-              <span>Cerrar Sesión</span>
+              <span class="white">Cerrar Sesión</span>
             </div>
           </button>
 
@@ -142,7 +142,7 @@
                   <p class="membership-name">{{ membership.name }}</p>
                   <p  class="membership-price" *ngIf="membership.price === 0; else priceSection">GRATIS</p>
                   <ng-template #priceSection>
-                    <p class="membership-price">${{ membership.price }}<span class="info-price">c/mes</span></p>
+                    <p class="membership-price"><span class="yellow">$ &nbsp;</span>{{ membership.price }}<span class="info-price">c/mes</span></p>
                   </ng-template>
                 </mat-card-subtitle>
               </mat-card-content>

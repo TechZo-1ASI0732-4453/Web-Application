@@ -102,9 +102,9 @@ export class UserGetOffersComponent implements OnInit {
         this.dialog.open(DialogSuccessfulExchangeComponent, {
           data: {
             name: offer.user_offer.name,
-            img: offer.user_offer.img,
+            profilePicture: offer.user_offer.profilePicture,
             phone: offer.user_offer.phone,
-            email: offer.user_offer.email
+            username: offer.user_offer.username
           },
           disableClose: true
         });

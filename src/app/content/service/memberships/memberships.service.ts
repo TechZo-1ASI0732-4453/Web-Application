@@ -16,11 +16,11 @@ export class MembershipsService {
 
   // Memberships endpoints
   getMemberships(): Observable<Memberships[]> {
-    return this.http.get<Memberships[]>(`${this.baseUrl}/api/v1/membership`);
+    return this.http.get<Memberships[]>(`${this.baseUrl}/api/v2/membership`);
   }
 
   getMembershipsWithBenefits(): Observable<any> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/v1/membership`).pipe(
+    return this.http.get<any[]>(`${this.baseUrl}/api/v2/membership`).pipe(
       mergeMap((memberships: any[]) => {
         const requests = memberships.map(membership =>
           this.getBenefitsByMembershipId(membership.id).pipe(
@@ -37,39 +37,39 @@ export class MembershipsService {
   }
 
   postMembership(data: Memberships): Observable<Memberships> {
-    return this.http.post<Memberships>(`${this.baseUrl}/api/v1/membership`, data, { headers: this.headers });
+    return this.http.post<Memberships>(`${this.baseUrl}/api/v2/membership`, data, { headers: this.headers });
   }
 
   deleteMembership(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/api/v1/membership/delete/${id}`, { headers: this.headers });
+    return this.http.delete<void>(`${this.baseUrl}/api/v2/membership/delete/${id}`, { headers: this.headers });
   }
 
   putMembership(id: string, data: Memberships): Observable<Memberships> {
-    return this.http.put<Memberships>(`${this.baseUrl}/api/v1/membership/${id}`, data, { headers: this.headers });
+    return this.http.put<Memberships>(`${this.baseUrl}/api/v2/membership/${id}`, data, { headers: this.headers });
   }
 
   getMembershipById(id: string): Observable<Memberships> {
-    return this.http.get<Memberships>(`${this.baseUrl}/api/v1/membership/${id}`, { headers: this.headers });
+    return this.http.get<Memberships>(`${this.baseUrl}/api/v2/membership/${id}`, { headers: this.headers });
   }
 
   // Benefits endpoints
   getBenefits(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/api/v1/benefits`, { headers: this.headers });
+    return this.http.get<any>(`${this.baseUrl}/api/v2/benefits`, { headers: this.headers });
   }
 
   postBenefit(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/api/v1/benefits`, data, { headers: this.headers });
+    return this.http.post<any>(`${this.baseUrl}/api/v2/benefits`, data, { headers: this.headers });
   }
 
   deleteBenefit(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/api/v1/benefits/delete/${id}`, { headers: this.headers });
+    return this.http.delete<void>(`${this.baseUrl}/api/v2/benefits/delete/${id}`, { headers: this.headers });
   }
 
   getBenefitById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/api/v1/benefits/${id}`, { headers: this.headers });
+    return this.http.get<any>(`${this.baseUrl}/api/v2/benefits/${id}`, { headers: this.headers });
   }
 
   getBenefitsByMembershipId(id: string): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/api/v1/benefits/membership/${id}`, { headers: this.headers });
+    return this.http.get<any>(`${this.baseUrl}/api/v2/benefits/membership/${id}`, { headers: this.headers });
   }
 }

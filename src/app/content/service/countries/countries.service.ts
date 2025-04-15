@@ -14,23 +14,23 @@ export class CountriesService {
   constructor(private http: HttpClient) {}
 
   private getCountry(id: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/api/v1/countries/${id}`);
+    return this.http.get(`${this.baseUrl}/api/v2/countries/${id}`);
   }
 
   private getDepartmentsByCountry(id: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/api/v1/departments/country/${id}`).pipe(
+    return this.http.get(`${this.baseUrl}/api/v2/departments/country/${id}`).pipe(
       shareReplay(1)
     );
   }
 
   private getDistrictsByDepartment(id: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/api/v1/districts/departments/${id}`).pipe(
+    return this.http.get(`${this.baseUrl}/api/v2/districts/departments/${id}`).pipe(
       shareReplay(1)
     );
   }
 
   getCountries(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/api/v1/countries`).pipe(
+    return this.http.get(`${this.baseUrl}/api/v2/countries`).pipe(
       shareReplay(1)
     );
   }

@@ -13,26 +13,26 @@ export class OffersService {
 
 
   getOffers(){
-    return this.http.get(`${this.baseUrl}/api/v1/exchanges`)
+    return this.http.get(`${this.baseUrl}/api/v2/exchanges`)
   }
 
   updateOfferStatus(id: string, status: string): Observable<any> {
-    const url = `${this.baseUrl}/api/v1/exchanges/status/${id}`;
+    const url = `${this.baseUrl}/api/v2/exchanges/status/${id}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { status: status };
     return this.http.put(url, body, { headers: headers });
   }
 
   postOffer(offer: Offers): Observable<Offers> {
-    return this.http.post<Offers>(`${this.baseUrl}/api/v1/exchanges`, offer);
+    return this.http.post<Offers>(`${this.baseUrl}/api/v2/exchanges`, offer);
   }
 
   getAllOffersByUserOwnId(id: string): Observable<Offers> {
-    return this.http.get<Offers>(`${this.baseUrl}/api/v1/exchanges/user-own/${id}`);
+    return this.http.get<Offers>(`${this.baseUrl}/api/v2/exchanges/user-own/${id}`);
   }
 
   getAllOffersByUserChangeId(id: string): Observable<Offers> {
-    return this.http.get<Offers>(`${this.baseUrl}/api/v1/exchanges/user-change/${id}`);
+    return this.http.get<Offers>(`${this.baseUrl}/api/v2/exchanges/user-change/${id}`);
   }
 
 
