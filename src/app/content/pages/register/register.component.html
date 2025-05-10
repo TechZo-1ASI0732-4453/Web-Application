@@ -10,7 +10,7 @@
         <input type="image" src="./assets/images/logos/logo-2.png" alt="cambiazo-logo" class="img-logo"/>
       </div>
       <h1 class="title">Registrarse</h1>
-      <button mat-button (click)="register()" class="gmail">
+      <button mat-button (click)="registerWithGoogle()" class="gmail">
         <div class="gmail-logo-name">
           <input type="image" src="https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png" height="18px" width="18px" style="padding-right: 10px" alt="Logo gmail"/>
           <span>Registrarse con Google</span>
@@ -20,10 +20,10 @@
         <div class="left"></div>
         <p class="subtitle">o registrate con correo</p>
         <div class="right"></div>
-      </div>
+      </div> 
 
       <div class="form-outline mb-4">
-        <mat-label><b>Nombre*</b></mat-label>
+        <mat-label>Nombre*</mat-label>
         <input
           [class.border-danger]="registerForm.controls.name.errors && (registerForm.controls.name.touched || submitted)"
           formControlName="name"
@@ -35,7 +35,7 @@
       </div>
 
       <div class="form-outline mb-4">
-        <mat-label class="form-label"><b>Correo electrónico*</b></mat-label>
+        <mat-label class="form-label">Correo electrónico*</mat-label>
         <input
           [class.border-danger]="(registerForm.controls.email.errors && (registerForm.controls.email.touched || submitted))"
           formControlName="email"
@@ -50,7 +50,7 @@
 
 
       <div class="form-outline mb-4">
-        <mat-label><b>Contraseña*</b></mat-label>
+        <mat-label>Contraseña*</mat-label>
         <div class="input-password">
           <input [type]="hide ? 'password' : 'text'"
                  [class.border-danger]="registerForm.controls.contrasenia.errors && (registerForm.controls.contrasenia.touched || submitted)"
@@ -68,7 +68,7 @@
       </div>
 
       <div class="form-outline mb-4">
-        <mat-label><b>Repetir contraseña*</b></mat-label>
+        <mat-label>Repetir contraseña*</mat-label>
         <div class="input-password">
           <input [type]="hiderepeat ? 'password' : 'text'"
                  [class.border-danger]="registerForm.controls.confirmacionContrasenia.errors && (registerForm.controls.confirmacionContrasenia.touched || submitted) || registerForm.errors && (registerForm.controls.confirmacionContrasenia.touched || submitted)"
@@ -86,7 +86,7 @@
       </div>
 
       <div class="form-outline mb-4">
-        <mat-label><b>Teléfono*</b></mat-label>
+        <mat-label>Teléfono*</mat-label>
         <input
           [class.border-danger]="registerForm.controls.tel.errors && (registerForm.controls.tel.touched || submitted)"
           formControlName="tel"
@@ -101,7 +101,7 @@
         </div>
       </div>
 
-      <div class="checkbox-accept">
+      <div class="checkbox-accept mb-4">
         <input type="checkbox" class="accept"><mat-label class="checkbox-text"><b>Aceptar <a routerLink="/terms-of-use">Términos y condiciones</a></b></mat-label>
       </div>
 

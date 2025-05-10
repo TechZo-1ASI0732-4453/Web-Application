@@ -14,7 +14,7 @@ import {UsersService} from "../../services/users.service";
 })
 export class CrudUsersComponent {
   dataSource = new MatTableDataSource()
-  displayedColumns = ['id','img','name','email','phone','city','membership','actions']
+  displayedColumns = ['id','profilePicture','name','username','phone','city','membership','actions']
 
   constructor(private userService: UsersService,private dialogUser: MatDialog) {
   }

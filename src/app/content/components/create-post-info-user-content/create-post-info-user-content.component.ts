@@ -96,11 +96,14 @@ export class CreatePostInfoUserContentComponent implements OnInit {
         this.user = new Users(
           data.id,
           data.name,
-          data.email,
-          data.phone,
+          data.username,
+          data.phoneNumber,
           data.password,
           data.membership,
-          data.img,
+          data.profilePicture,
+          data.isActive,
+          data.isGoogleAccount,
+          data.roles,
           []
         );
       },

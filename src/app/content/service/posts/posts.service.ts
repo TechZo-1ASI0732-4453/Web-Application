@@ -20,20 +20,20 @@ export class PostsService {
   private countryCache = new Map<number, Observable<any>>();
 
   getProducs(): Observable<Products[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/v1/products`).pipe(
+    return this.http.get<any[]>(`${this.baseUrl}/api/v2/products`).pipe(
       switchMap(products => {
         const productObservables = products.map(product => {
-          const district$ = this.districtCache.get(product.districtId) || this.http.get<any>(`${this.baseUrl}/api/v1/districts/${product.districtId}`).pipe(shareReplay(1));
+          const district$ = this.districtCache.get(product.districtId) || this.http.get<any>(`${this.baseUrl}/api/v2/districts/${product.districtId}`).pipe(shareReplay(1));
           this.districtCache.set(product.districtId, district$);
 
           return district$.pipe(
             switchMap(district => {
-              const department$ = this.departmentCache.get(district.departmentId) || this.http.get<any>(`${this.baseUrl}/api/v1/departments/${district.departmentId}`).pipe(shareReplay(1));
+              const department$ = this.departmentCache.get(district.departmentId) || this.http.get<any>(`${this.baseUrl}/api/v2/departments/${district.departmentId}`).pipe(shareReplay(1));
               this.departmentCache.set(district.departmentId, department$);
 
               return department$.pipe(
                 switchMap(department => {
-                  const country$ = this.countryCache.get(department.countryId) || this.http.get<any>(`${this.baseUrl}/api/v1/countries/${department.countryId}`).pipe(shareReplay(1));
+                  const country$ = this.countryCache.get(department.countryId) || this.http.get<any>(`${this.baseUrl}/api/v2/countries/${department.countryId}`).pipe(shareReplay(1));
                   this.countryCache.set(department.countryId, country$);
 
                   return forkJoin({
@@ -75,13 +75,13 @@ export class PostsService {
           userId: data.user_id,
           districtId: ids.districtId
         };
-        return this.http.post<any>(`${this.baseUrl}/api/v1/products`, backendData);
+        return this.http.post<any>(`${this.baseUrl}/api/v2/products`, backendData);
       })
     );
   }
 
   deleteProduct(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/api/v1/products/delete/${id}`);
+    return this.http.delete(`${this.baseUrl}/api/v2/products/delete/${id}`);
   }
 
   putProduct(id: number, data: any): Observable<any> {
@@ -98,27 +98,27 @@ export class PostsService {
       districtId: data.districtId
     };
     console.log(backendData)
-    return this.http.put<any>(`${this.baseUrl}/api/v1/products/edit/${id}`, backendData);
+    return this.http.put<any>(`${this.baseUrl}/api/v2/products/edit/${id}`, backendData);
   }
 
   getProductById(id: string): Observable<Products> {
-    return this.http.get<any>(`${this.baseUrl}/api/v1/products/${id}`).pipe(
+    return this.http.get<any>(`${this.baseUrl}/api/v2/products/${id}`).pipe(
       switchMap(product => {
-        const district$ = this.districtCache.get(product.districtId) || this.http.get<any>(`${this.baseUrl}/api/v1/districts/${product.districtId}`).pipe(
+        const district$ = this.districtCache.get(product.districtId) || this.http.get<any>(`${this.baseUrl}/api/v2/districts/${product.districtId}`).pipe(
           shareReplay(1)
         );
         this.districtCache.set(product.districtId, district$);
 
         return district$.pipe(
           switchMap(district => {
-            const department$ = this.departmentCache.get(district.departmentId) || this.http.get<any>(`${this.baseUrl}/api/v1/departments/${district.departmentId}`).pipe(
+            const department$ = this.departmentCache.get(district.departmentId) || this.http.get<any>(`${this.baseUrl}/api/v2/departments/${district.departmentId}`).pipe(
               shareReplay(1)
             );
             this.departmentCache.set(district.departmentId, department$);
 
             return department$.pipe(
               switchMap(department => {
-                const country$ = this.countryCache.get(department.countryId) || this.http.get<any>(`${this.baseUrl}/api/v1/countries/${department.countryId}`).pipe(
+                const country$ = this.countryCache.get(department.countryId) || this.http.get<any>(`${this.baseUrl}/api/v2/countries/${department.countryId}`).pipe(
                   shareReplay(1)
                 );
                 this.countryCache.set(department.countryId, country$);
@@ -154,20 +154,20 @@ export class PostsService {
   }
 
   getProductsByUserId(userId: number): Observable<Products[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/v1/products/users/${userId}`).pipe(
+    return this.http.get<any[]>(`${this.baseUrl}/api/v2/products/user/${userId}`).pipe(
       switchMap(products => {
         const productObservables = products.map(product => {
-          const district$ = this.districtCache.get(product.districtId) || this.http.get<any>(`${this.baseUrl}/api/v1/districts/${product.districtId}`).pipe(shareReplay(1));
+          const district$ = this.districtCache.get(product.districtId) || this.http.get<any>(`${this.baseUrl}/api/v2/districts/${product.districtId}`).pipe(shareReplay(1));
           this.districtCache.set(product.districtId, district$);
 
           return district$.pipe(
             switchMap(district => {
-              const department$ = this.departmentCache.get(district.departmentId) || this.http.get<any>(`${this.baseUrl}/api/v1/departments/${district.departmentId}`).pipe(shareReplay(1));
+              const department$ = this.departmentCache.get(district.departmentId) || this.http.get<any>(`${this.baseUrl}/api/v2/departments/${district.departmentId}`).pipe(shareReplay(1));
               this.departmentCache.set(district.departmentId, department$);
 
               return department$.pipe(
                 switchMap(department => {
-                  const country$ = this.countryCache.get(department.countryId) || this.http.get<any>(`${this.baseUrl}/api/v1/countries/${department.countryId}`).pipe(shareReplay(1));
+                  const country$ = this.countryCache.get(department.countryId) || this.http.get<any>(`${this.baseUrl}/api/v2/countries/${department.countryId}`).pipe(shareReplay(1));
                   this.countryCache.set(department.countryId, country$);
 
                   return forkJoin({
@@ -189,7 +189,7 @@ export class PostsService {
 
   /******************* Products Categories **********************/
   getCategoriesProducts(): Observable<any> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/v1/product-category`).pipe(
+    return this.http.get<any[]>(`${this.baseUrl}/api/v2/product-category`).pipe(
       map(categories => {
         if (categories) {
           return categories.map(category => ({
@@ -207,15 +207,15 @@ export class PostsService {
   }
 
   postCategoryProduct(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/api/v1/product-category`, data);
+    return this.http.post<any>(`${this.baseUrl}/api/v2/product-category`, data);
   }
 
   deleteCategoryProduct(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/api/v1/product-category/${id}`);
+    return this.http.delete(`${this.baseUrl}/api/v2/product-category/${id}`);
   }
 
   putCategoryProduct(id: string, data: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/api/v1/product-category/${id}`, data);
+    return this.http.put(`${this.baseUrl}/api/v2/product-category/${id}`, data);
   }
 
   private categoryCache = new Map<string, Observable<any>>();
@@ -224,7 +224,7 @@ export class PostsService {
     if (this.categoryCache.has(id)) {
       return this.categoryCache.get(id)!;
     } else {
-      const request = this.http.get<any>(`${this.baseUrl}/api/v1/product-category/${id}`).pipe(
+      const request = this.http.get<any>(`${this.baseUrl}/api/v2/product-category/${id}`).pipe(
         shareReplay(1)
       );
       this.categoryCache.set(id, request);
@@ -301,36 +301,36 @@ export class PostsService {
   /******************* Location Endpoints **********************/
   getCountryById(id: number): Observable<any> {
     if (id) {
-      return this.http.get<any>(`${this.baseUrl}/api/v1/countries/${id}`);
+      return this.http.get<any>(`${this.baseUrl}/api/v2/countries/${id}`);
     } else {
       return of(null);
     }
   }
 
   getDepartmentById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/api/v1/departments/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/api/v2/departments/${id}`);
   }
 
   getDistrictById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/api/v1/districts/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/api/v2/districts/${id}`);
   }
 
   getDistrictId(districtName: string): Observable<number> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/v1/districts`).pipe(
+    return this.http.get<any[]>(`${this.baseUrl}/api/v2/districts`).pipe(
       map(districts => districts.find(district => district.name === districtName)?.id || -1),
       catchError(() => of(-1))
     );
   }
 
   private getDepartmentId(departmentName: string): Observable<number> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/v1/departments`).pipe(
+    return this.http.get<any[]>(`${this.baseUrl}/api/v2/departments`).pipe(
       map(departments => departments.find(department => department.name === departmentName)?.id || -1),
       catchError(() => of(-1))
     );
   }
 
   private getCountryId(countryName: string): Observable<number> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/v1/countries`).pipe(
+    return this.http.get<any[]>(`${this.baseUrl}/api/v2/countries`).pipe(
       map(countries => countries.find(country => country.name === countryName)?.id || -1),
       catchError(() => of(-1))
     );

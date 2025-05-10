@@ -30,7 +30,7 @@ export class DialogSuccessfulExchangeComponent implements OnInit {
   }
 
    sendEmail() {
-    const email = this.data.email;
+    const email = this.data.username;
     const subject = "Intercambio en CambiaZo";
     const body = encodeURIComponent("Hola, soy el usuario de CambiaZo con el que hiciste el intercambio. ¿Cuándo podríamos hacer la entrega?");
     const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;

@@ -62,8 +62,8 @@ export class EditProfileComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UsersService, private membershipService: MembershipsService, private router: Router, private dialog: MatDialog) {
     this.editProfileForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, CustomValidators.validEmail]],
-      phone: ['', [Validators.required, CustomValidators.onlyNumbers, Validators.minLength(9), Validators.maxLength(9)]]
+      username: ['', [Validators.required, CustomValidators.validEmail]],
+      phoneNumber: ['', [Validators.required, CustomValidators.onlyNumbers, Validators.minLength(9), Validators.maxLength(9)]]
     });
 
     this.changePasswordForm = this.fb.group({
@@ -82,8 +82,9 @@ export class EditProfileComponent implements OnInit {
       this.user = data;
       this.editProfileForm.patchValue({
         name: this.user.name,
-        email: this.user.email,
-        phone: this.user.phone
+        username: this.user.username,
+        phoneNumber: this.user.phoneNumber,
+        profilePicture: this.user.profilePicture
       });
       this.getMembership();
     });
@@ -117,15 +118,17 @@ export class EditProfileComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.editProfileForm.valid) {
-      const userId = String(localStorage.getItem('id'));
+      const userId = Number(localStorage.getItem('id'));
+
       const updateData = {
-        ...this.editProfileForm.value,
-        id: userId, // Make sure to include user ID in the data
-        password: this.user.password, // Include password to avoid overwriting it as empty
-        profilePicture: this.user.img, // Ensure profile picture is included if needed
-        membershipId: this.user.membership // Ensure membershipId is included
+        id: userId,
+        name: this.editProfileForm.value.name,
+        username: this.editProfileForm.value.username,
+        phoneNumber: this.editProfileForm.value.phoneNumber,
+        profilePicture: this.user.profilePicture,
       };
-      this.userService.putUser(userId, updateData).subscribe(() => {
+
+      this.userService.putUser(userId.toString(), updateData).subscribe(() => {
         const dialogRef = this.dialog.open(DialogSuccessfullyChangeComponent);
         dialogRef.afterClosed().subscribe(() => {
           window.location.reload();
@@ -161,9 +164,9 @@ export class EditProfileComponent implements OnInit {
       const ChangePassword = {
         name: this.user.name,
         password: newPassword,
-        email: this.user.email,
-        phone: this.user.phone,
-        profilePicture: this.user.img,
+        username: this.user.username,
+        phoneNumber: this.user.phoneNumber,
+        profilePicture: this.user.profilePicture,
         membershipId: this.user.membership
       };
 

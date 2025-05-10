@@ -61,6 +61,10 @@
   color:white;
 }
 
+.input[type="checkbox"]{
+  background-color: #FFD146;
+}
+
 @media (max-width: 1000px) {
   .title{
     line-height: 0.8;
