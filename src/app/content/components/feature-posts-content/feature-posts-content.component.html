@@ -1,0 +1,39 @@
+<div *ngIf="loading" class="container-slider">
+  <div class="container-cards">
+    <div class="skeleton-card" *ngFor="let _ of [1,2,3,4, 5, 6, 7, 8, 9, 10, 11]">
+      <div class="skeleton-image"></div>
+      <div class="skeleton-line short"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line price"></div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading" class="container-slider">
+  <div class="container-cards" *ngFor="let i of [1,2]">
+    <ng-container *ngFor="let item of items">
+      <mat-card [routerLink]="['/product-information', item.id]">
+        <div class="image"
+             [style.background-image]="'url(' + item.images[0] + ')'"></div>
+        <div class="info-card">
+          <p class="location">
+            <mat-icon style="color: #FFD146">place</mat-icon>
+            {{ item.location.district }}
+          </p>
+          <mat-card-header>
+            <div class="container-titles">
+              <mat-card-title>{{ item.name }}</mat-card-title>
+              <mat-card-subtitle>
+                <button>{{ item.category }}</button>
+              </mat-card-subtitle>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="p-info">{{ item.desiredObject }}</p>
+            <p class="p-price">S/{{ item.price }} valor aprox.</p>
+          </mat-card-content>
+        </div>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>

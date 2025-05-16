@@ -1,0 +1,114 @@
+.container-image-background{
+  height: 20rem;
+  position: relative;
+}
+
+.image-background{
+  object-fit: fill;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.mesh-background{
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.27);
+  width: 100%;
+  height: 100%;
+}
+
+.container-profile{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  height: 12rem;
+  width: 12rem;
+}
+
+.container-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+mat-card{
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+}
+
+mat-card-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: inherit;
+  margin-left: 1rem;
+}
+
+h1{
+  font-size: 2.5rem;
+  font-family: inherit;
+  font-weight: bolder;
+  margin-bottom: 1.5rem;
+  line-height: 1;
+}
+
+.user-name{
+  max-width: 300px;
+  text-align: center;
+}
+
+button{
+  background-color: #FFD146;
+  width: 100%;
+  padding: 15px;
+  font-size: 15px;
+  border: none;
+  border-radius: 35px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.edit-btn:hover{
+  background-color: #FFD146;
+}
+@media (max-width: 768px) {
+  .container-profile{
+    width: 100%;
+    text-align: center;
+  }
+  .mat-mdc-card-content:last-child{
+    margin-left: 0;
+  }
+
+  .container-avatar {
+    height: 8rem;
+    width: 8rem;
+  }
+
+  h1{
+    font-size: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  button{
+    width: 100%;
+    height: 100%;
+  }
+
+  mat-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,0 +1,23 @@
+<div class="container">
+  <button class="button-close" mat-dialog-close [mat-dialog-close]="false" ><mat-icon>close</mat-icon></button>
+  <div class="dialog-title" mat-dialog-title>
+    <h1>Cambiar Foto de Perfil</h1>
+  </div>
+
+  <div class="dialog-content" mat-dialog-content>
+    <ngx-dropzone accept="image/*" (change)="onSelect($event)" [multiple]="false">
+      <ngx-dropzone-label  *ngIf="!files.length">Subir Foto</ngx-dropzone-label>
+      <ngx-dropzone-image-preview
+        ngProjectAs="ngx-dropzone-preview"
+        [removable]="true"
+        *ngFor="let f of files"
+        [file]="f"
+        (removed)="onRemove(f)">
+      </ngx-dropzone-image-preview>
+    </ngx-dropzone>
+  </div>
+
+  <div class="dialog-actions" mat-dialog-actions>
+    <button routerLink="/profile" class="button-confirm" mat-button [disabled]="disableButton" (click)="onChange()">Confirmar</button>
+  </div>
+</div>

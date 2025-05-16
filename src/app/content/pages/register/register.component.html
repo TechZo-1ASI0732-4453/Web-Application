@@ -1,0 +1,128 @@
+<div class="register">
+  <button mat-button routerLink="/home" class="button-home">
+    <div class="home-icon">
+      <input type="image" src="https://cdn-icons-png.flaticon.com/512/25/25694.png" height="25px" width="25px" alt="Home Icon"/>
+    </div>
+  </button>
+  <div class="boxB col1">
+    <form class="form-container" [formGroup]="registerForm">
+      <div class="logo">
+        <input type="image" src="./assets/images/logos/logo-2.png" alt="cambiazo-logo" class="img-logo"/>
+      </div>
+      <h1 class="title">Registrarse</h1>
+      <button mat-button (click)="registerWithGoogle()" class="gmail">
+        <div class="gmail-logo-name">
+          <img src="https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png" height="20" width="20" alt="Logo Google">
+          <span class="gmail-text">Registrarse con Google</span>
+        </div>
+      </button>
+      <div class="line-text">
+        <div class="left"></div>
+        <p class="subtitle">o registrate con correo</p>
+        <div class="right"></div>
+      </div>
+
+      <div class="form-outline mb-4">
+        <mat-label>Nombre*</mat-label>
+        <input
+          [class.border-danger]="registerForm.controls.name.errors && (registerForm.controls.name.touched || submitted)"
+          formControlName="name"
+          type="text"
+          class="mat-input-element"/>
+        <div *ngIf="(registerForm.controls.name.touched || submitted) && registerForm.controls.name.getError('required')" class="requisito">
+          Nombre es requerido.
+        </div>
+      </div>
+
+      <div class="form-outline mb-4">
+        <mat-label class="form-label">Correo electrónico*</mat-label>
+        <input
+          [class.border-danger]="(registerForm.controls.email.errors && (registerForm.controls.email.touched || submitted))"
+          formControlName="email"
+          type="email"
+          class="mat-input-element"/>
+        <div *ngIf="(registerForm.controls.email.touched || submitted) && registerForm.controls.email.getError('required')" class="requisito">
+        </div>
+        <div *ngIf="registerForm.controls.email.touched && registerForm.controls.email.getError('validEmail')" class="requisito">
+          Por favor, introduce un correo electrónico válido.
+        </div>
+      </div>
+
+
+      <div class="form-outline mb-4">
+        <mat-label>Contraseña*</mat-label>
+        <div class="input-password">
+          <input [type]="hide ? 'password' : 'text'"
+                 [class.border-danger]="registerForm.controls.contrasenia.errors && (registerForm.controls.contrasenia.touched || submitted)"
+                 formControlName="contrasenia"
+                 class="text-input-password"/>
+          <button class="visibility" matSuffix (click)="hide1($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <img [src]="'assets/images/icons' + (hide ? '/visibility_off.png' : '/visibility.png')" style="width: 15px;height: 15px" alt="">
+          </button>
+        </div>
+        <div *ngIf="(registerForm.controls.contrasenia.touched || submitted) && registerForm.controls.contrasenia.getError('minlength')" class="requisito">
+          Mínimo 8 caracteres
+        </div>
+        <div *ngIf="(registerForm.controls.contrasenia.touched || submitted) && registerForm.controls.contrasenia.getError('required')" class="requisito">
+        </div>
+      </div>
+
+      <div class="form-outline mb-4">
+        <mat-label>Repetir contraseña*</mat-label>
+        <div class="input-password">
+          <input [type]="hiderepeat ? 'password' : 'text'"
+                 [class.border-danger]="registerForm.controls.confirmacionContrasenia.errors && (registerForm.controls.confirmacionContrasenia.touched || submitted) || registerForm.errors && (registerForm.controls.confirmacionContrasenia.touched || submitted)"
+                 formControlName="confirmacionContrasenia"
+                 class="text-input-password"/>
+          <button class="visibility" matSuffix (click)="hide2($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hiderepeat">
+            <img [src]="'assets/images/icons' + (hiderepeat ? '/visibility_off.png' : '/visibility.png')" style="width: 15px;height: 15px" alt="">
+          </button>
+        </div>
+        <div *ngIf="(registerForm.controls.confirmacionContrasenia.touched || submitted) && registerForm.controls.confirmacionContrasenia.getError('required')" class="requisito">
+        </div>
+        <div *ngIf="(registerForm.controls.confirmacionContrasenia.touched || submitted) && registerForm.getError('mustBeEqual')" class="requisito">
+          No coincide con la contraseña
+        </div>
+      </div>
+
+      <div class="form-outline mb-4">
+        <mat-label>Teléfono*</mat-label>
+        <input
+          maxlength="9"
+          [class.border-danger]="registerForm.controls.tel.errors && (registerForm.controls.tel.touched || submitted)"
+          formControlName="tel"
+          type="tel"
+          class="mat-input-element"/>
+        <div *ngIf="(registerForm.controls.tel.touched || submitted) && registerForm.controls.tel.getError('required')" class="requisito">
+          Teléfono es requerido.
+        </div>
+        <div *ngIf="(registerForm.controls.tel.touched || submitted) && registerForm.controls.tel.getError('maxlength')" class="requisito">
+          Máximo 9 dígitos permitidos.
+        </div>
+        <div *ngIf="(registerForm.controls.tel.touched || submitted) && registerForm.controls.tel.getError('onlyNumbers')" class="requisito">
+        </div>
+        <div *ngIf="(registerForm.controls.tel.touched || submitted) && registerForm.controls.tel.getError('maxlength')" class="requisito">
+        </div>
+      </div>
+
+      <div class="checkbox-accept mb-4">
+        <input type="checkbox" class="accept"><mat-label class="checkbox-text"><b>Aceptar <a routerLink="/terms-of-use">Términos y condiciones</a></b></mat-label>
+      </div>
+
+      <button
+        mat-button
+        type="button"
+        (click)="addUser()"
+        class="button"
+      >
+        <b>Crear Cuenta</b>
+      </button>
+
+      <p class="login">¿Ya tienes una cuenta? <a routerLink="/login"> Inicia Sesión</a></p>
+    </form>
+  </div>
+  <div class="boxB col2">
+    <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Imagen de Donación">
+  </div>
+</div>
+<app-footer-content-2></app-footer-content-2>

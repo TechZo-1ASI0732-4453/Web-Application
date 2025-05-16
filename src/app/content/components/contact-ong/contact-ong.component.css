@@ -1,0 +1,99 @@
+.additional-information  h1,.additional-information h3,.additional-information p,.additional-information button{
+  font-family: 'Montserrat', sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+h3,h1,button{
+  font-weight: bolder;
+}
+
+
+.additional-information{
+  padding: 2rem 1rem 2rem 1rem;
+}
+mat-card {
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+mat-card-content {
+  padding: 20px;
+}
+
+mat-card-content section {
+  margin-bottom: 15px;
+}
+
+mat-card-content h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+}
+
+mat-card-content p {
+  font-size: 15px;
+  line-height: 20px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 90%;
+  text-align: left;
+}
+
+mat-icon {
+  color: #FFD146;
+  width: 2rem;
+}
+section span{
+  display: flex;
+  margin:1rem 0 2rem 0;
+}
+
+span p:first-child{
+  margin-bottom: 1rem;
+}
+
+mat-card-header {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+mat-card-header h1 {
+  margin: 2.5rem 0;
+  text-align: center;
+}
+
+mat-card-header button{
+  background-color: #FFD146;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  margin-bottom: 2.5rem
+}
+.container-logo{
+  border-radius:50%;
+  overflow: hidden;
+  width: 170px;
+  height: 170px;
+}
+
+.logo-ong{
+  width: 170px;
+  height: 170px;
+  object-fit: fill;
+}
+
+@media (max-width: 975px){
+
+  mat-card-content {
+    padding: 0;
+  }
+
+}

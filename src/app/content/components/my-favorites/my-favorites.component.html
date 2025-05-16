@@ -1,0 +1,40 @@
+<div class="favorite__first">
+  <p>Mis Favoritos:</p>
+</div>
+<div class="line-text">
+  <div class="line"></div>
+</div>
+<div class="favorites__container">
+  <ng-container *ngIf="favorites && favorites.length > 0">
+    <mat-card class="example-card" *ngFor="let favorite of favorites">
+      <img class="card__img" [src]="favorite.product.image" alt="Imagen del producto">
+      <div class="card__information">
+        <mat-card-header class="card__header">
+          <mat-card-title class="card__title">{{ favorite.product.name }}</mat-card-title>
+          <button (click)="openConfirm(favorite.product.id)" class="delete__button" title="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content class="card__content">
+          <p class="p__information">
+            <mat-icon style="color: #FFD146">place</mat-icon>
+            {{ favorite.product.location.districtName }}, {{ favorite.product.location?.departmentName }}
+          </p>
+          <p class="p__information">
+            <img src="./assets/images/icons/change.svg" style="height: 24px; width: 24px">
+            {{ favorite.product.desiredObject }}
+          </p>
+          <p class="p__price">Valor aproximado s/.{{ favorite.product.price }}</p>
+        </mat-card-content>
+        <mat-card-footer class="card__footer">
+          <button [routerLink]="['/product-information', favorite.product.id]"  class="offer__button">Ver Más</button>
+        </mat-card-footer>
+      </div>
+    </mat-card>
+  </ng-container>
+
+  <app-message-box-component
+    *ngIf="checked && favorites.length === 0"
+    [message]="'No tienes productos favoritos aún.'">
+  </app-message-box-component>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+  <button class="button-close"  mat-dialog-close><mat-icon>close</mat-icon></button>
+  <div class="dialog-title" mat-dialog-title>
+    <h1>¡FELICIDADES!</h1>
+  </div>
+
+  <div class="dialog-content" mat-dialog-content>
+    Estamos muy contentos de que hayas completado de manera exitosa este CambiaZo. Le haremos saber a  {{data.name}} que aceptaste la oferta recibida.
+  </div>
+
+  <div class="dialog-actions" mat-dialog-actions>
+    <div class="contact-info">
+      <div class="user-image">
+        <img src="{{data.profilePicture}}" alt="User Image">
+      </div>
+      <div class="contact-info-detail">
+        <h2>Información de Contacto de {{data.name}}:</h2>
+
+          <button (click)="sendWhatsapp()"  mat-button class="button-whatsapp">
+            WhatsApp</button>
+
+          <button (click)="sendEmail()" mat-button class="button-email">Correo Electrónico</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+

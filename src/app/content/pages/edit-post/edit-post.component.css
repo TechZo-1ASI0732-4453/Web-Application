@@ -1,0 +1,19 @@
+@import "../post/post.component.css";
+
+.btn-return{
+  background-color: #FFD146;
+  border: none;
+  border-radius: 20px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  margin: 1rem  0 0 2rem ;
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+

@@ -1,0 +1,14 @@
+<div class="container">
+  <button class="button-close"  [mat-dialog-close]="false"><mat-icon>close</mat-icon></button>
+  <div class="dialog-title" mat-dialog-title>
+    <h1>¿Estás seguro de eliminar esta publicación?</h1>
+  </div>
+
+  <div class="dialog-content" mat-dialog-content>
+    Recuerda que una vez eliminada la publicación, no se podrá deshacer.
+  </div>
+
+  <div class="dialog-actions" mat-dialog-actions>
+    <button class="button-delete-post" mat-button [mat-dialog-close]="true">Confirmar</button>
+  </div>
+</div>

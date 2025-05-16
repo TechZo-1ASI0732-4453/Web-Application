@@ -1,0 +1,72 @@
+<div class="sent-offers-cards-container">
+  <ng-container *ngFor="let offer of offers.slice().reverse()">
+    <div class="container-get-offers">
+      <mat-card class="get-offers-card">
+        <mat-card-header class="header-product-name">
+          <h1>{{ offer.productOwn.name }}</h1>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="content">
+            <div class="column col1">
+              <mat-card class="card-get">
+                <mat-card-header class="header-card-get">
+                  <h1>¿Qué ofreces?</h1>
+                  <div class="change-for">
+                    <img src="./assets/images/icons/change.svg" style="height: 20px; width: 20px;">
+                    <p>{{ offer.productChange.name }}</p>
+                  </div>
+                </mat-card-header>
+                <mat-card-content class="content-card-get">
+                  <p>{{ offer.productChange.description }}</p>
+                </mat-card-content>
+                <mat-card-footer class="footer-card-get">
+                  <img [src]="offer.productChange.image">
+                </mat-card-footer>
+              </mat-card>
+            </div>
+            <div class="column col2">
+              <mat-card class="card-offer">
+                <div class="header-card-offer">
+                  <div mat-card-avatar class="avatar-card-offer">
+                    <img [src]="offer.userOwn.profilePicture">
+                  </div>
+                  <h1>{{ offer.userOwn.name }}</h1>
+                </div>
+                <mat-card-content>
+                  <div class="offer-content">
+                    <div class="col11">
+                      <h1>¿Qué te han ofrecido?</h1>
+                      <div class="content-image">
+                        <img [src]="offer.productOwn.image">
+                      </div>
+                    </div>
+                    <div class="col22">
+                      <h1>{{ offer.productOwn.name }}</h1>
+                      <div class="content-description">
+                        <h1>Datos:</h1>
+                        <p>{{ offer.productOwn.description }}</p>
+                        <div class="content-more-info">
+                          <p><mat-icon style="color: #FFD146">monetization_on</mat-icon> Valor estimado: S/.{{ offer.productOwn.price }}</p>
+                          <p><mat-icon style="color: #FFD146">place</mat-icon> {{ offer.districtName}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card-content>
+                <mat-card-footer class="footer-card-offer">
+                  <div class="footer-title">
+                    <h1>¿Qué opinas?</h1>
+                  </div>
+                  <div class="status">
+                    <button class="btn-accepted" (click)="setStatusAccepted(offer.id)">Aceptar</button>
+                    <button class="btn-denied" (click)="setStatusDenied(offer.id)">Declinar</button>
+                  </div>
+                </mat-card-footer>
+              </mat-card>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-container>
+</div>

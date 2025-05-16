@@ -1,0 +1,84 @@
+<div class="container-publisher-profile">
+  <div class="publisher-content">
+    <div class="products-from-publisher">
+      <section class="title-publisher"><h1>Perfil de {{ user?.name }}</h1></section>
+      <section class="subtitle-publisher"><h1>Últimos productos publicados</h1></section>
+      <div class="container-card">
+        <ng-container *ngFor="let product of userProducts">
+          <mat-card class="example-card" [routerLink]="['/product-information', product.id]">
+            <div class="container-post-image">
+              <img mat-card-image [src]="product.images[0]" alt="Photo Product">
+            </div>
+            <div class="location">
+              <mat-icon style="color: #FFD146">place</mat-icon>{{ product.location.district }}
+            </div>
+            <mat-card-header>
+              <mat-card-title>{{ product.product_name }}</mat-card-title>
+              <mat-card-subtitle>{{ product.getCategory }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p class="description">{{ product.description }}</p>
+              <hr>
+              <p class="change-object">{{ product.change_for }}</p>
+            </mat-card-content>
+            <mat-card-footer>S/{{ product.price }} valor aprox.</mat-card-footer>
+          </mat-card>
+        </ng-container>
+      </div>
+    </div>
+    <div class="profile-information">
+      <div class="publisher-data">
+        <mat-card *ngIf="user">
+          <mat-card-header>
+            <mat-card-title>
+              <img [src]="user.profilePicture" alt="User image" width="120" height="120">
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h1>{{ user.name }}</h1>
+            <h3>{{ user.username }}</h3>
+            <div class="publisher-raiting">
+              <div class="stars-score">
+                <ng-container *ngFor="let star of getStarRating(averageScore)">
+                  <img [src]="star.icon === 'star' ? 'assets/images/icons/full-star.png' : star.icon === 'star_half' ? 'assets/images/icons/half-star.png' : 'assets/images/icons/none-star.png'" width="20" alt="Star">
+                </ng-container>
+              </div>
+              <p>{{ totalReviews }} Reseña(s)</p>
+            </div>
+            <hr>
+            <div class="offers-made">
+              <img src="./assets/images/icons/change.svg" alt="Icon image" width="20">
+              Trueques realizados: {{ acceptedOffersCount }}
+            </div>
+            <button mat-button (click)="copyProfileLink()">
+              Compartir perfil
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="publisher-reviews">
+        <mat-card>
+          <mat-card-title>
+            <h1>Reseñas</h1>
+          </mat-card-title>
+          <mat-card-content>
+            <div class="user-review" *ngFor="let review of reviews; let last = last">
+              <div class="review-header">
+                <h3>{{review.give_user_name}}</h3>
+                <div class="stars-score">
+                  <ng-container *ngFor="let star of getStarRating(review.score)">
+                    <img [src]="star.icon === 'star' ? 'assets/images/icons/full-star.png' : star.icon === 'star_half' ? 'assets/images/icons/half-star.png' : 'assets/images/icons/none-star.png'" width="20" alt="Star">
+                  </ng-container>
+                </div>
+              </div>
+              <div class="review-content">
+                <p>{{ review.content }}</p>
+              </div>
+              <hr *ngIf="!last">
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

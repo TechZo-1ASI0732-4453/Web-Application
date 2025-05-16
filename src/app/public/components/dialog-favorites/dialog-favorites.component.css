@@ -1,0 +1,33 @@
+.container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.dialog-title h1 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  font-size: 45px;
+}
+
+.dialog-content {
+  margin-top: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 25px;
+}
+
+.dialog-actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.dialog-actions button {
+  margin: 0 auto;
+  background-color: #FFD146;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  font-size: 25px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  border-radius: 10px;
+}

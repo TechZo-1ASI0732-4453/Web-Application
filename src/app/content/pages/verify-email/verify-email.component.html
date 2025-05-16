@@ -1,0 +1,30 @@
+<div class="verify-email">
+  <button mat-button routerLink="/login" class="button-home">
+    <div class="home-icon">
+      <mat-icon fontIcon="keyboard_backspace"></mat-icon>
+    </div>
+  </button>
+  <div class="boxB col1">
+    <form class="form-container">
+      <img src="../../../assets/images/logos/logo-2.png" alt="cambiazo-logo" class="img-logo">
+      <h1 class="title">¿Has olvidado tu contraseña?</h1>
+
+      <p class="subtitle">Ingrese la dirección de correo electrónico que utilizó cuando se registro y le enviaremos un código de verificación de 4 dígitos para restablecer su contraseña. </p>
+
+      <mat-label><b>Correo electrónico</b></mat-label>
+      <input name="username" placeholder="Email" class="mat-input-element" [(ngModel)]="username" (input)="onInputChange()">
+
+      <div *ngIf="showError" class="error-message">
+        Correo electrónico no válido
+      </div>
+
+      <button mat-button (click)="VerifyEmail()" class="button"><b>Enviar</b></button>
+
+    </form>
+  </div>
+  <div class="boxB col2">
+    <img src="https://amiif.org/wp-content/uploads/2022/08/un-simple-apreton-de-manos-puede-cambiar-el-rumbo-de-las-enfermedades-infecciosas.jpeg" alt="img">
+  </div>
+
+</div>
+<app-footer-content-2></app-footer-content-2>

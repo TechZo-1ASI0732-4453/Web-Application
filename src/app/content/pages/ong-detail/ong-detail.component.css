@@ -1,0 +1,56 @@
+button{
+  background-color: #FFD146;
+  border: none;
+  border-radius: 20px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  margin: 2.5rem;
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.ong{
+  display: flex;
+  flex-direction: row;
+}
+app-contact-ong{
+  padding:0 4rem 0 0 ;
+  width: max-content;
+  max-width: 100%;
+  min-width: 20rem;
+
+}
+
+app-detail-ong{
+  width: 100%;
+  padding:0 0 0 7rem;
+}
+@media (max-width: 975px){
+
+  .ong{
+    flex-direction: column-reverse;
+    align-items: center;
+    padding:0;
+  }
+
+  app-contact-ong{
+    width: max-content;
+    max-width: 100%;
+    min-width: 50%;
+    padding: 0;
+  }
+
+  app-detail-ong{
+    padding:0;
+    display: flex;
+    justify-content: center;
+
+  }
+}
+

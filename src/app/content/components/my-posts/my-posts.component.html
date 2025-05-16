@@ -1,0 +1,87 @@
+<div class="posts__first">
+  <p>Productos Publicados:</p>
+</div>
+
+<div class="line-text">
+  <div class="line"></div>
+</div>
+
+<div class="cards-container">
+  <ng-container *ngFor="let posts of items">
+    <div class="container-products" *ngIf="posts && posts.available ">
+      <div class="container-image-products">
+        <img [src]="posts.images[0]" />
+      </div>
+
+      <mat-card class="example-card">
+        <div class="container-image-products-responsive">
+          <img [src]="posts.images[0]" />
+        </div>
+
+        <mat-card-header>
+          <mat-card-title>{{ posts.name }}</mat-card-title>
+
+          <div class="post-burger-content">
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+
+          <mat-menu #menu="matMenu">
+            <button
+              (click)="setPost(posts)"
+              [routerLink]="['/edit/', posts.name + '&Id=' + posts.id]"
+              mat-menu-item
+              title="Editar"
+            >
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+
+            <button
+              mat-menu-item
+              (click)="onCallDeletePost(Number(posts.id))"
+              title="Eliminar"
+            >
+              <mat-icon>delete</mat-icon>
+              <span>Eliminar</span>
+            </button>
+          </mat-menu>
+
+          <mat-card-subtitle>{{ posts.category }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>{{ posts.description }}</p>
+
+          <p class="p__information">
+            <mat-icon style="color: #FFD146">place</mat-icon>
+            {{ posts.location.district || posts.location.district }},
+            {{ posts.location.department || posts.location.department }}
+          </p>
+
+          <div class="change-for">
+            <img src="./assets/images/icons/change.svg" style="height: 20px; width: 20px"/>
+            <p>{{ posts.desiredObject }}</p>
+          </div>
+        </mat-card-content>
+
+        <mat-card-footer>
+          Valor aproximado s/.{{ posts.price }}
+
+          <!-- <span *ngIf="posts.available" class="status-label active">
+            <mat-icon>check_circle</mat-icon> Activo
+          </span>
+
+          <span *ngIf="!posts.available" class="status-label inactive">
+            <mat-icon>block</mat-icon> No Activo
+          </span> -->
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </ng-container>
+</div>

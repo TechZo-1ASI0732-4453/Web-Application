@@ -1,0 +1,57 @@
+<mat-toolbar>
+  <div class="container-logo">
+    <img src="./assets/images/logos/logo-1.png" alt="Logo Cambiazo" (click)="openHome()">
+  </div>
+
+  <nav class="container-nav">
+    <ul>
+      <li><a routerLink="/home" title="Inicio">Inicio</a></li>
+      <li><a routerLink="/donations" title="Donaciones">Donaciones</a></li>
+      <li><a routerLink="/memberships" title="Membresías">Membresías</a></li>
+    </ul>
+  </nav>
+
+  <div class="container-button">
+    <button class="button-login" (click)="onCallCreatePost()">Publicar</button>
+    <button *ngIf="!userService.isLogged" class="button-register" routerLink="/login">Iniciar Sesión</button>
+    <div *ngIf="userService.isLogged" mat-card-avatar class="container-img-profile" routerLink="/profile">
+      <div *ngIf="!isImageLoaded" class="skeleton-avatar"></div>
+      <img
+        [src]="user.profilePicture"
+        (load)="isImageLoaded = true"
+        [class.profile-loaded]="isImageLoaded"
+        class="profile-img"
+        alt="User profile"
+      >
+    </div>
+  </div>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="burger">
+    <mat-icon style="color: #ffffff">menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <div class="burger-content">
+      <div class="option">
+        <p><a routerLink="/home" title="Inicio">Inicio</a></p>
+      </div>
+      <div class="option">
+        <p><a routerLink="/donations" title="Donaciones">Donaciones</a></p>
+      </div>
+      <div class="option">
+        <p><a routerLink="/memberships" title="Membresías">Membresías</a></p>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="burger-content">
+      <div class="option">
+        <p><a (click)="onCallCreatePost()" title="Publicar">Publicar</a></p>
+      </div>
+      <div class="option">
+        <p *ngIf="!userService.isLogged"><a routerLink="/login" title="Iniciar Sesión">Iniciar Sesión</a></p>
+        <p *ngIf="userService.isLogged"><a routerLink="/profile" title="Iniciar Sesión">Perfil</a></p>
+      </div>
+    </div>
+  </mat-menu>
+
+</mat-toolbar>
+<div class="toolbar-template"></div>

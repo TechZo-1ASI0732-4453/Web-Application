@@ -1,0 +1,63 @@
+<h1 class="title-latest-posts">Ultimos Productos Publicados</h1>
+
+<div class="container-search">
+  <mat-form-field class="form-content">
+    <div class="search-wrapper">
+      <mat-icon class="search-icon" style="color: #FFD146">search</mat-icon>
+      <input matInput placeholder="Buscar..." class="search-input" (input)="searchProduct($event)">
+    </div>
+  </mat-form-field>
+</div>
+
+<div class="container-categories">
+  <div class="box-categories">
+    <button
+      mat-button
+      class="chip-category"
+      *ngFor="let category of categories"
+      [routerLink]="['/home/', 'products&' + category.name]"
+    >
+      {{ category.name }}
+    </button>
+  </div>
+</div>
+
+<div *ngIf="loading" class="skeleton-container">
+  <div class="skeleton-card" *ngFor="let _ of [1,2,3,4,5,6,7,8,9,10]">
+    <div class="skeleton-image"></div>
+    <div class="skeleton-line short"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line price"></div>
+  </div>
+</div>
+
+<div *ngIf="!loading" class="container-card">
+  <ng-container *ngFor="let product of (items.slice().reverse() | slice: 0 : showCount)">
+    <mat-card class="example-card" [routerLink]="['/product-information', product.id]">
+      <div class="ribbon" *ngIf="product.boost">Destacado</div>
+      <div class="container-post-image">
+        <img mat-card-image [src]="product.images[0]" alt="Photo Product">
+      </div>
+      <div class="location">
+        <mat-icon style="color: #FFD146">place</mat-icon>
+        {{ product.location.district }}
+      </div>
+      <mat-card-header>
+        <mat-card-title>{{ product.name }}
+        </mat-card-title>
+        <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="description">{{ product.description }}</p>
+        <hr>
+        <p class="change-object">{{ product.desiredObject }}</p>
+      </mat-card-content>
+      <mat-card-footer>S/{{ product.price }} valor aprox.</mat-card-footer>
+    </mat-card>
+  </ng-container>
+
+  <div *ngIf="items.length > showCount" class="ver-mas">
+    <button mat-button (click)="loadMore()">Ver más</button>
+  </div>
+</div>

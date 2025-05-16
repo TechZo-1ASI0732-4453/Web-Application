@@ -1,0 +1,21 @@
+<div class="container-image-background">
+  <img class="image-background" src="https://png.pngtree.com/thumb_back/fh260/background/20200731/pngtree-blue-carbon-background-with-sport-style-and-golden-light-image_371487.jpg">
+  <div class="mesh-background"></div>
+  <div class="container-profile">
+    <mat-card>
+      <mat-card-header>
+        <div class="container-avatar">
+          <img [src]="user.profilePicture">
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="user-name">
+          <h1>{{user.name}}</h1>
+        </div>
+
+        <button class="edit-btn" routerLink="/profile/edit" mat-flat-button>Editar Perfil</button>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

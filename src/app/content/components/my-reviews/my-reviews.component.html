@@ -1,0 +1,67 @@
+<div class="reviews-title">
+  <p>Mis reseñas:</p>
+</div>
+
+<div class="my-reviews-analytics">
+  <div class="line-text">
+    <div class="line"></div>
+  </div>
+  <div class="analytics">
+    <div class="average-score">
+      <p>{{averageScore.toFixed(2)}}</p>
+    </div>
+    <div class="count-score">
+      <div class="stars-score">
+        <ng-container *ngFor="let star of getStarRating(averageScore)">
+          <img [src]="star.icon === 'star' ? 'assets/images/icons/full-star.png' :
+                      star.icon === 'star_half' ? 'assets/images/icons/half-star.png' :
+                      'assets/images/icons/none-star.png'" alt="Star">
+        </ng-container>
+      </div>
+      <p>{{totalReviews}} Reseña(s)</p>
+    </div>
+    <div class="progress-score">
+      <ng-container *ngFor="let rating of ratings">
+        <div class="individual-progress-bar">
+          <mat-progress-bar mode="determinate" [value]="rating.percentage"></mat-progress-bar>
+          <span style="margin-left: 10px;">{{ rating.score }}</span>
+          <img src="assets/images/icons/full-star.png">
+        </div>
+        <br>
+      </ng-container>
+    </div>
+  </div>
+  <div class="line-text">
+    <div class="line"></div>
+  </div>
+</div>
+
+<div class="cards-section-title">
+  <p>Opiniones destacadas:</p>
+</div>
+
+<div class="reviews-cards-container">
+  <ng-container *ngFor="let review of myReviews">
+    <div class="container-reviews">
+      <mat-card class="example-card">
+        <div mat-card-avatar class="container-image">
+          <img [src]="review.userAuthor.profilePicture || 'assets/images/default-avatar.png'" alt="User Avatar">
+        </div>
+        <div class="cards-text-content">
+          <mat-card-header>
+            <mat-card-title>{{review.userAuthor.name}}</mat-card-title>
+            <div class="stars">
+              <mat-icon *ngFor="let star of getStarIcons(review.rating)"
+                        [ngClass]="{ 'star-filled': star.filled, 'star-empty': !star.filled }">
+                {{ star.icon }}
+              </mat-icon>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{review.message}}</p>
+          </mat-card-content>
+        </div>
+      </mat-card>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,37 @@
+
+<div *ngIf="loading" class="skeleton-container">
+  <div class="skeleton-card" *ngFor="let _ of [1,2,3,4,5,6,7,8,9,10]">
+    <div class="skeleton-image"></div>
+    <div class="skeleton-line short"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line price"></div>
+  </div>
+</div>
+
+
+<div *ngIf="!loading" class="container-card">
+  <h1 *ngIf="productsFiltered.length == 0">No hay productos encontrados</h1>
+
+  <ng-container *ngFor="let product of productsFiltered" >
+    <mat-card class="example-card" [routerLink]="['/product-information', product.id]">
+      <div class="container-post-image">
+        <img mat-card-image src='{{product.images[0]}}' alt="Photo Product">
+      </div>
+      <div class="location"><mat-icon style="color: #FFD146">place</mat-icon>{{product.location.districtName}}</div>
+      <mat-card-header>
+        <mat-card-title>{{product.product_name}}</mat-card-title>
+        <mat-card-subtitle>{{product.getCategory}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="description">{{product.description}} </p>
+        <hr>
+        <p class="change-object">{{product.change_for}}</p>
+      </mat-card-content>
+      <mat-card-footer>S/{{product.price}} valor aprox.</mat-card-footer>
+    </mat-card>
+  </ng-container>
+
+</div>
+
+

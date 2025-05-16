@@ -1,0 +1,53 @@
+<div class="container">
+
+  <h1 class="title">Comunícate con nosotros</h1>
+  <h2 class="title-comment">¿Cómo podemos ayudarte?</h2>
+
+  <p class="introduction">
+    ¿Tienes alguna pregunta, sugerencia o comentario?<br>
+    ¡Nos encantaría escucharte!<br>
+    Completa el formulario y nos pondremos en contacto contigo lo antes posible.
+  </p>
+
+  <form class="form-container">
+
+    <mat-form-field appearance="fill" class="mat-form-field">
+      <mat-label><b>Nombre</b></mat-label>
+      <input matInput [formControl]="name" class="mat-input-element">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mat-form-field">
+      <mat-label><b>Correo Electrónico</b></mat-label>
+      <input matInput
+             placeholder="pat@example.com"
+             [formControl]="email"
+             (blur)="updateErrorMessage()"
+             required
+             class="mat-input-element">
+      <mat-error *ngIf="email.invalid && (email.touched || email.dirty)">
+        {{ errorMessage }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mat-form-field">
+      <mat-label><b>Teléfono</b></mat-label>
+      <mat-icon matSuffix>phone</mat-icon>
+      <input matInput [formControl]="phone" class="mat-input-element">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mat-form-field">
+      <mat-label><b>Comentario</b></mat-label>
+      <textarea matInput [formControl]="message" class="mat-input-element"></textarea>
+    </mat-form-field>
+
+    <mat-checkbox class="mat-checkbox">
+      Acepto la Política de <b class="redirection">Privacidad</b> y las <b class="redirection">Condiciones de Uso</b>
+    </mat-checkbox>
+
+    <button mat-button class="button" (click)="sendEmail()" type="button">
+      Enviar
+    </button>
+
+  </form>
+
+</div>

@@ -1,0 +1,7 @@
+<div class="container">
+  <section><h1>{{categoryName}}</h1></section>
+  <div class='filter-section'>
+  <app-search-products (productSearched)="handleFilterProduct($event)" (categorySearched)="handleFilterByCategory($event)"></app-search-products>
+  <app-products-found [categoryIdSearched]="categoryName"></app-products-found>
+  </div>
+</div>

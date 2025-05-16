@@ -1,0 +1,43 @@
+<div class="dialog-select-container">
+  <section><h1>¿Qué ofreces a cambio?</h1></section>
+
+  <mat-dialog-content>
+    <div class="cards-container">
+      <ng-container *ngFor="let product of items">
+        <div class="container-products" *ngIf="product.available">
+          <mat-card class="example-card">
+            <div class="card-content">
+              <div class="product-image-offer">
+                <img [src]="product.images[0]" width="200" height="250" />
+                <button
+                  mat-button
+                  [disabled]="hasOffered(product)"
+                  (click)="offer(product)">
+                  {{ hasOffered(product) ? 'Ya ofertaste' : 'Ofertar' }}
+                </button>
+              </div>
+              <div class="product-details-offer">
+                <mat-card-header>
+                  <mat-card-title>{{ product.product_name }}</mat-card-title>
+                  <mat-card-subtitle>{{ product.getCategory }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>{{ product.description }}</p>
+                  <div class="products-icon">
+                    <mat-icon style="color:#FFD146">place</mat-icon>
+                    <p>{{ product.location.district }}</p>
+                  </div>
+                  <div class="products-icon">
+                    <img src="./assets/images/icons/change.svg" height="24" width="24" />
+                    <p>{{ product.change_for }}</p>
+                  </div>
+                  <h2>Valor aproximado S/.{{ product.price }}</h2>
+                </mat-card-content>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </ng-container>
+    </div>
+  </mat-dialog-content>
+</div>

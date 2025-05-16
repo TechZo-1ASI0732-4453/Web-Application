@@ -1,0 +1,34 @@
+<div class="user-offers-title">
+  <p>Ofertas:</p>
+</div>
+
+<div>
+  <div class="line-text">
+    <div class="line"></div>
+  </div>
+
+  <div class="offers-buttons">
+    <button class="sent" (click)="showSentOffers()" [class.active]="showSent">Enviadas</button>
+    <button class="get" (click)="showGetOffers()" [class.active]="!showSent">Recibidas</button>
+  </div>
+
+  <div class="line-text">
+    <div class="line"></div>
+  </div>
+</div>
+
+<app-user-sent-offers
+  *ngIf="showSent"
+  (checkEmpty)="onSentOffersChecked($event)">
+</app-user-sent-offers>
+
+<app-user-get-offers
+  *ngIf="!showSent"
+  (checkEmpty)="onGetOffersChecked($event)">
+</app-user-get-offers>
+
+<app-message-box-component
+  *ngIf="(showSent && sentChecked && sentOffersEmpty) || (!showSent && getChecked && getOffersEmpty)"
+  [message]="'No se encontraron ofertas ' + (showSent ? 'enviadas' : 'recibidas') + '.'">
+</app-message-box-component>
+

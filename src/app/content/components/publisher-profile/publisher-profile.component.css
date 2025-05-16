@@ -1,0 +1,268 @@
+.container-publisher-profile {
+  padding: 3rem;
+}
+
+.products-from-publisher {
+  width: 75%;
+}
+
+.publisher-content {
+  display: flex;
+  gap: 1rem;
+}
+
+.title-publisher {
+  background-color: #ffd146;
+  align-content: center;
+  padding: 1rem 1.5rem;
+  border-radius: 30px 0 0 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+}
+
+.title-publisher h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.subtitle-publisher {
+  background-color: #000;
+  align-content: center;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+}
+
+.subtitle-publisher h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+.profile-information{
+  width: 25%;
+}
+
+mat-card{
+  border-radius: 0px;
+
+}
+
+.publisher-data mat-card mat-card-header{
+  text-align: center;
+  justify-content: center;
+  background-color: #FFD146;
+}
+
+.publisher-data mat-card mat-card-title {
+  padding: 1rem;
+}
+
+.publisher-data mat-card mat-card-title img{
+  border-radius: 50%;
+  border: 4px solid #fff;
+  object-fit: cover;
+  object-position: center;
+}
+
+.publisher-data mat-card mat-card-content{
+  text-align: center;
+  padding: 1rem;
+}
+
+.publisher-data mat-card mat-card-content h1, h3{
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+  color: #000;
+}
+.publisher-data mat-card mat-card-content h3{
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.publisher-raiting p{
+  font-family: 'Montserrat', sans-serif;
+}
+.review-header h3{
+  margin-bottom:0.25rem;
+}
+mat-card-content button{
+  background-color: #FFD146;
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  margin-top:1rem;
+}
+
+.offers-made{
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.publisher-reviews{
+  margin-top: 1rem;
+}
+
+.publisher-reviews mat-card-title h1{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.review-header{
+  padding-top: 0.5rem;
+}
+
+.user-review{
+  padding: 0 1rem 0 1rem;
+}
+.user-review hr{
+  border: solid 1px #C2C2C2;
+}
+.review-content{
+  font-family: 'Montserrat', sans-serif;
+  text-align: justify;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+/* Estilos para dispositivos de pantalla pequeña */
+@media (max-width: 800px) {
+  .publisher-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .products-from-publisher,
+  .profile-information {
+    width: 100%;
+  }
+
+  .title-publisher h1,
+  .subtitle-publisher h1 {
+    font-size: 1.5rem;
+  }
+  .container-publisher-profile{
+    padding: 1rem;
+  }
+}
+
+/* Estilos para mat-card */
+.container-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container-card mat-card {
+  width: 280px;
+  height: 472px;
+  margin-bottom: 30px;
+  margin-right: 20px;
+  margin-left: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.container-card mat-card-title,
+.container-card mat-card-content,
+.container-card mat-card-header {
+  padding: 0;
+  margin: 0;
+}
+
+.container-card mat-card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.change-object {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 2.5rem;
+}
+
+.container-post-image {
+  width: inherit;
+  height: 248px;
+}
+
+.container-card img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+
+.location {
+  margin: 0;
+  padding: 5px;
+  background: black;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.container-card mat-card-content {
+  height: 100%;
+  padding: 0 10px 0 10px;
+}
+
+.container-card hr {
+  border: solid 1px #ffd146;
+}
+
+.container-card mat-card-header {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.container-card mat-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+}
+
+.container-card mat-card-footer {
+  padding: 0.2rem 0 0.2rem 0;
+  background: #ffd146;
+  font-size: 15px;
+  color: #000000;
+  font-weight: bolder;
+  text-align: center;
+  height: 28px;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 2.5rem;
+}

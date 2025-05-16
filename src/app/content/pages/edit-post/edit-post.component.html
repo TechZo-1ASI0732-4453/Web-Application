@@ -1,0 +1,24 @@
+<button class="btn-return" routerLink="/profile/my-posts"><mat-icon>arrow_back_ios</mat-icon> Regresar a mis publicacion</button>
+<div class="container">
+  <section><h1>Editar</h1></section>
+  <div class="container-create-post" *ngIf="post">
+    <div class="section-1">
+      <app-create-post-info-user-content class="section-info-contact"
+                                         [boost]="post.boost"
+                                         [country]="country"
+                                         [department] ="department"
+                                           [district]="district"
+      ></app-create-post-info-user-content>
+      <button class="button-submit btn-desk" mat-stroked-button (click)="onPost()">Editar</button>
+    </div>
+    <app-create-info-post-content class="section-info-post"
+                                  [category_id]="parseInt(post.category_id)"
+                                  [product_name]="post.product_name"
+                                  [description]="post.description"
+                                  [change_for]="post.change_for"
+                                  [price]="post.price"
+                                  [images]="post.images"
+    ></app-create-info-post-content>
+  </div>
+  <button class="button-submit btn-res" mat-stroked-button (click)="onPost()">Editar</button>
+</div>

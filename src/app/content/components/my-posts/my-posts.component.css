@@ -1,0 +1,163 @@
+
+.container-image-products img{
+  width: 250px;
+  height: 100%;
+  object-fit: cover;
+}
+.line-text{
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+.line {
+  margin-bottom: 0.5rem;
+  flex: 1;
+  height: 1px;
+  background-color: #C2C2C2;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+.posts__first{
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  padding-top: 4rem;
+  padding-left: 3rem;
+  padding-bottom: 1rem;
+}
+.cards-responsive{
+  display: none;
+}
+
+.status-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-left: 12px;
+  color: #fff;
+}
+
+.status-label.active {
+  background-color: #4caf50;
+}
+
+.status-label.inactive {
+  background-color: #ff3b30;
+}
+
+.container-products{
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: auto;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+  flex: 0 0 calc(50% - 20px);
+}
+
+.example-card{
+  width: 100%;
+}
+.p__information{
+  word-break: break-word;
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat' , sans-serif;
+}
+.change-for{
+  display: flex;
+  flex-direction: row;
+}
+.change-for p{
+  margin-left: 5px;
+  font-size: 15px;
+}
+.change-for img{
+  margin-top: 2px;
+}
+mat-card-header{
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+mat-card-title{
+  font-size: 1.7rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+}
+mat-card-subtitle{
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #C2C2C2;
+  font-family: 'Montserrat', sans-serif;
+}
+mat-card-content{
+  height: 100%;
+  align-content: center;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 0.5rem;
+}
+mat-card-footer{
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.cards-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 3rem 3rem 5rem 3rem;
+  gap: 2rem;
+}
+
+
+.post-burger-content{
+  margin: 0;
+  display: block;
+  align-items: center;
+}
+
+.container-image-products-responsive img{
+  display: none;
+}
+@media screen and (max-width: 1150px) {
+  .title-posts {
+    padding-top: 2rem;
+    padding-left: 1rem;
+  }
+}
+@media screen and (max-width: 1100px){
+  .container-products{
+    width: 100%;
+  }
+  .cards-container{
+    padding: 1rem 1rem 3rem 1rem;
+  }
+  .container-products{
+    flex: 0 0 calc(100%);
+  }
+}
+
+@media screen and (max-width: 550px){
+  .container-image-products img{
+    display: none;
+  }
+  .container-image-products-responsive img{
+    display: flex;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+}

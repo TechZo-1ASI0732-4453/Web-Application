@@ -1,0 +1,157 @@
+.container{
+  padding: 1% 15% 2% 15%;
+}
+.button-close{
+  position: absolute;
+  z-index: 1;
+  right:0.7rem;
+  top:0.7rem;
+  background: transparent;
+  border: none;
+  transition: 1s;
+}
+
+
+.button-close:hover{
+  transform: scale(1.6);
+}
+
+.dialog-title, .dialog-content,.dialog-actions{
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+.more-info-detail h3{
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  font-size: 2.5vh;
+  line-height: 2.5vh;
+}
+
+.dialog-title h1{
+  font-family: inherit;
+  font-weight: bolder;
+  font-size: 8vh;
+  line-height: 8vh;
+}
+
+.dialog-content{
+  font-size: 3vh;
+  line-height: 3vh;
+}
+.contact-info-detail h2{
+  font-size: 3vh;
+  line-height: 3vh;
+}
+.dialog-actions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.dialog-actions button, .dialog-actions a{
+  width: 100%;
+  margin: 0.2rem;
+  font-weight: bolder;
+  font-family: inherit;
+  transition: 1s;
+}
+
+.button-whatsapp{
+  color: #00d540;
+  background-color: transparent;
+  border:solid 3px #00d540;
+}
+.whatsapp{
+  fill: #ffffff !important;
+}
+.button-whatsapp:hover{
+  color: #ffffff;
+  background-color: #00d540;
+  border:none ;
+  transform: scale(1.02);
+  .whatsapp{
+    fill: #ffffff !important;
+  }
+}
+.button-email{
+  color: #61b4e3;
+  background-color: transparent;
+  border:solid 3px #61b4e3;
+}
+.button-email:hover{
+  color: #ffffff;
+  background-color: #61b4e3;
+  border:none ;
+  transform: scale(1.02);
+}
+.contact-info{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.contact-info-detail{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  text-align: center;
+  max-width: 450px;
+  width: 100%;
+}
+.user-image img{
+  width:100%;
+  height: 100%;
+  border-radius: 50%;
+  object-position: center;
+  object-fit: cover;
+}
+
+.user-image {
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+@media(max-width:850px){
+  .dialog-title h1{
+    font-size: 4vh;
+    line-height: 4vh;
+  }
+  .dialog-content{
+    font-size: 2vh;
+    line-height: 2vh;
+  }
+  .more-info-detail h3{
+    font-size: 2vh;
+    line-height: 2vh;
+  }
+  .contact-info-detail h2{
+    font-size: 2vh;
+    line-height: 2vh;
+  }
+
+  .dialog-actions button{
+    width: 75%;
+  }
+
+  .contact-info{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .container{
+    padding: 1% 2% 2% 2%;
+  }
+  .user-image {
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+  }
+}
+

@@ -1,0 +1,62 @@
+.container{
+  padding: 1% 15% 2% 15%;
+}
+.dialog-title, .dialog-content,.dialog-actions{
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.dialog-title h1{
+  font-family: inherit;
+  font-weight: bolder;
+  font-size: 8vh;
+  line-height: 8vh;
+}
+
+.dialog-content{
+  font-size: 3vh;
+  line-height: 3vh;
+}
+
+.dialog-actions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.dialog-actions button{
+  width: 40%;
+  margin: 0.2rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  font-weight: bolder;
+  font-family: inherit;
+  transition: 1s;
+  background-color: #FFD146;
+}
+
+.dialog-actions button:hover{
+  transform: scale(1.02);
+
+}
+
+
+@media(max-width:850px){
+  .dialog-title h1{
+    font-size: 4vh;
+    line-height: 4vh;
+  }
+  .dialog-content{
+    font-size: 2vh;
+    line-height: 2vh;
+  }
+
+  .dialog-actions button{
+    width: 75%;
+  }
+
+  .container{
+    padding: 1% 2% 2% 2%;
+  }
+}
+

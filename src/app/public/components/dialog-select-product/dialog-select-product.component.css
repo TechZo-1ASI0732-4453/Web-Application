@@ -1,0 +1,146 @@
+.dialog-select-container {
+  padding: 1.5rem;
+  max-width: 100%; /* Ensure the container doesn't exceed the viewport width */
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+section {
+  background-color: #FFD146;
+  align-content: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  border-radius: 30px 0 0 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+  margin: 1.5rem;
+}
+
+section h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.example-card {
+  margin-bottom: 1rem;
+  max-width: 100%; /* Ensure the card doesn't exceed the container width */
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.card-content {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Allow items to wrap to the next line */
+}
+
+.product-image-offer {
+  width: 30%;
+  padding: 1rem;
+  text-align: center;
+  display: grid;
+  justify-items: center; /* Center items horizontally */
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.product-image-offer button {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  width: 200px;
+  transition: 0.43s;
+  font-weight: bolder;
+  margin-top: 0.5rem;
+}
+
+.product-image-offer button:hover {
+  color: #FFD146;
+}
+
+.product-details-offer {
+  width: 70%;
+  padding: 1rem;
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.product-details-offer mat-card-header mat-card-title {
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+  color: #000;
+}
+
+.product-details-offer mat-card-header mat-card-subtitle {
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+  padding-bottom: 1.5rem;
+}
+
+.product-details-offer mat-card-content {
+  font-family: 'Montserrat', sans-serif;
+  color: #000;
+}
+
+.product-details-offer mat-card-content h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: #000;
+  font-weight: bolder;
+}
+
+.products-icon {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-bottom: 1rem;
+}
+
+.products-icon p {
+  margin: 0 0 0 8px;
+}
+
+@media only screen and (max-width: 800px) {
+  section h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-content {
+    display: grid;
+    gap: 0rem;
+    justify-items: center; /* Center the grid items horizontally */
+  }
+
+  .product-image-offer {
+    text-align: center;
+    justify-content: center;
+    width: 100%; /* Full width to center the content */
+  }
+
+  .product-image-offer img {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .product-image-offer button {
+    width: 100px;
+    margin: auto; /* Center the button */
+  }
+
+  .product-details-offer {
+    width: 100%;
+    text-align: justify; /* Center the text content */
+  }
+
+  .dialog-select-container,
+  .example-card,
+  .product-details-offer,
+  .product-image-offer {
+    padding: 0; /* Remove padding to avoid horizontal overflow */
+    margin: 0; /* Remove margin to avoid horizontal overflow */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+  }
+  .example-card{
+    margin-bottom: 1rem;
+  }
+}

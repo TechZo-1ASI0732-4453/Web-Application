@@ -1,0 +1,93 @@
+.information-ong{
+  font-family: 'Montserrat', sans-serif;
+  padding: 2rem 7% 2rem 7%;
+  text-align: justify;
+}
+.socials{
+  display: flex;
+  flex-direction: row;
+  margin:3rem 0;
+  flex-wrap: wrap;
+}
+.social-button {
+  font-family: inherit;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 5px 15px;
+  margin-right: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+
+}
+
+.social-button a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.social-button:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+
+.social-button:active {
+  background-color: #e0e0e0;
+  border-color: #bbb;
+}
+
+.information-ong p {
+  white-space: pre-line;
+  margin: 2rem 0;
+  font-size: 18px;
+  line-height: 25px;
+
+}
+
+.information-ong h1, .information-ong h2, .information-ong h3,.information-ong h4{
+  font-family: inherit;
+  font-weight: bolder;
+
+}
+h1{
+  font-size: 2rem;
+  text-align: left;
+
+}
+section h3{
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 975px){
+  .information-ong {
+    width: 90%;
+    padding: 2rem 2rem 2rem 2rem;
+  }
+
+  .information-ong p {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  h1{
+    font-size: 1.5rem;
+
+  }
+  section h3{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+}
+

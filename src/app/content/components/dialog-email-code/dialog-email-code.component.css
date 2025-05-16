@@ -1,0 +1,111 @@
+.container {
+  padding: 1% 15% 2% 15%;
+}
+
+.button-close {
+  position: absolute;
+  z-index: 1;
+  right: 0.7rem;
+  top: 0.7rem;
+  background: transparent;
+  border: none;
+  transition: 1s;
+}
+
+.mat-input-element {
+  border: 1px solid #C2C2C2;
+  width: 60%;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+  font-size: 30px;
+}
+
+.input-code {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  position: relative; /* Ensure the container has relative positioning */
+}
+
+.error-message {
+  color: #ff0000;
+  position: absolute;
+  font-size: 15px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 5px;
+  text-align: center;
+}
+
+.button-close:hover {
+  transform: scale(1.6);
+}
+
+.dialog-title,
+.dialog-content,
+.dialog-actions {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.dialog-title h1 {
+  font-family: inherit;
+  font-weight: bolder;
+  font-size: 8vh;
+  line-height: 8vh;
+}
+
+.dialog-content {
+  font-size: 3vh;
+  line-height: 3vh;
+  padding: 15px 0 15px 0;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dialog-actions button {
+  width: 40%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  font-weight: bolder;
+  font-family: inherit;
+  transition: 1s;
+}
+
+.dialog-actions button:hover {
+  transform: scale(1.02);
+}
+
+.button-verify {
+  background-color: #FFD146;
+  border: solid 2px #FFD146;
+  font-size: 2vh;
+}
+
+@media(max-width: 850px) {
+  .dialog-title h1 {
+    font-size: 4vh;
+    line-height: 4vh;
+  }
+
+  .dialog-content {
+    font-size: 2vh;
+    line-height: 2vh;
+  }
+
+  .dialog-actions button {
+    width: 75%;
+  }
+
+  .container {
+    padding: 1% 2% 2% 2%;
+  }
+}

@@ -1,0 +1,88 @@
+:host {
+  display: block;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.mat-dialog-container {
+  padding: 1.5rem !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.button-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.button-close:hover {
+  transform: scale(1.2);
+}
+
+.dialog-title {
+  margin: 0;
+  text-align: center;
+}
+
+.dialog-title h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.dialog-content {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0.5rem 0 1rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.dialog-actions button {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.dialog-actions button:hover {
+  transform: scale(1.05);
+}
+
+.button-login {
+  background-color: #FFD146;
+  color: #000;
+  border: 2px solid #FFD146;
+}
+
+.button-register {
+  background: transparent;
+  color: #FFD146;
+  border: 2px solid #FFD146;
+}
+
+@media (max-width: 600px) {
+  .dialog-title h2 {
+    font-size: 1.1rem;
+  }
+  .dialog-content {
+    font-size: 0.9rem;
+  }
+  .dialog-actions {
+    flex-direction: column;
+  }
+  .dialog-actions button {
+    width: 100%;
+  }
+}

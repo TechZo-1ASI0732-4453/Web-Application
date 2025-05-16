@@ -1,0 +1,368 @@
+h1,h2,h3,h4,h5,h6,p{
+  font-family: 'Montserrat', sans-serif;
+}
+.sent-offers-cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+}
+.container-get-offers{
+  max-width: 1000px;
+  width: 100%;
+}
+.header-product-name{
+  background-color: black;
+  color: #FFD146;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+.product-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0.5rem 0;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.header-product-name h1{
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.card-get{
+  height: calc(100% - 20px);
+  margin: 20px 20px 20px 0;
+  align-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.header-card-get{
+  display: flex;
+  flex-direction: column;
+}
+.card-get img{
+  height: 100%;
+}
+.change-for{
+  display: flex;
+  flex-direction: row;
+}
+.change-for p{
+  margin-left: 5px;
+  font-size: 15px;
+}
+.change-for img{
+  margin-top: 2px;
+}
+.content-card-get{
+  font-size: 15px;
+}
+.footer-card-get img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  max-width: 250px;
+  max-height: 250px;
+  border-radius: 5px;
+
+}
+.footer-card-get{
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.card-offer{
+  width: auto;
+  height: calc(100% - 20px);
+  margin: 20px 0 20px 0;
+  align-content: center;
+  gap: 15px;
+  box-shadow: none;
+  border-radius: 0;
+  border-left: solid 1px #DCDCDC;
+}
+.header-card-offer{
+  display: flex;
+  align-items: center;
+}
+
+
+.avatar-card-offer img{
+  width:100%;
+  height: 100%;
+  border-radius: 50%;
+  object-position: center;
+  object-fit: cover;
+}
+
+
+.header-card-offer h1 {
+  margin-left: 1rem;
+  font-size: 25px;
+  font-weight: bold;
+}
+.avatar-card-offer {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+.avatar-card-offer {
+  overflow: hidden;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.content{
+  width: 100%;
+  display:flex;
+  flex-wrap: wrap;
+}
+.col1{
+  flex-direction: column;
+  display: inline-block;
+  order: 1;
+  flex:1;
+}
+.col2 {
+  flex-direction: column;
+  display: inline-block;
+  order: 2;
+  flex: 2;
+}
+
+.offer-content{
+  width: 100%;
+  display:flex;
+  flex: 1;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.col11, .footer-title{
+  flex-direction: column;
+  display: flex;
+  box-sizing: border-box;
+  order: 1;
+  flex:1;
+}
+.col22, .status{
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  order: 2;
+  flex: 1;
+}
+.footer-title{
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+}
+.footer-title h1{
+  margin: 0;
+  padding: 0;
+}
+.content-image{
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-image img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 5px;
+}
+.col11 h1, .col22 h1, .footer-card-offer h1{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.header-card-get h1{
+  font-size: 20px;
+  font-weight: bold;
+}
+.col22 h1{
+  color: #FFD146;
+}
+.content-description h1{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  color: #000000;
+  margin: 0;
+}
+.content-description {
+  padding: 0 20px 0 20px;
+  font-size: 15px;
+}
+.content-more-info p {
+  display: flex;
+  align-items: center;
+}
+.content-more-info p {
+  gap: 5px;
+}
+.footer-card-offer{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+.footer-card-offer h1{
+  align-content: center;
+  padding-left: 1rem;
+}
+.btn-accepted{
+  cursor: pointer;
+  color:#41DB0B ;
+  background-color: #EAFFDD;
+  border: solid 1px #41DB0B ;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  width: 8.5rem;
+  height: 2.2rem;
+  margin: 0 0.5rem 0 0.5rem;
+}
+.btn-denied{
+  cursor: pointer;
+  color:#FF502A ;
+  background-color: #FFD7B9;
+  border: solid 1px #FF502A ;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  width: 8.5rem;
+  height: 2.2rem;
+  margin: 0 0.5rem 0 0.5rem;
+}
+.btn-denied:hover{
+  color:#FFD7B9 ;
+  background-color: #FF502A;
+  border: none ;
+}
+.btn-accepted:hover{
+  color:#EAFFDD ;
+  background-color: #41DB0B;
+  border: none ;
+}
+
+.status{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  align-self: center;
+}
+
+@media (max-width: 780px) {
+  .offer-content {
+    flex-direction: column;
+  }
+
+  .col11, .col22 , .card-get{
+    width: 100%;
+  }
+
+  .footer-card-offer{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+
+  .status{
+    text-align: center;
+  }
+  .btn-denied, .btn-accepted{
+    margin: 0.5rem;
+  }
+  .content-description {
+    padding: 0 10px 0 10px;
+    font-size: 15px;
+  }
+  .col22 h1{
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+  .footer-title h1{
+    margin: 0;
+    padding: 0;
+  }
+
+}
+
+@media (max-width: 620px){
+  .col1, .col2 {
+    width: 100%;
+  }
+  .header-card-offer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .avatar-card-offer{
+    width: 100px;
+    height: 100px;
+    margin-left: 0;
+  }
+  .content {
+    flex-direction: column;
+  }
+
+  .card-offer{
+    border-left: none;
+    border-top: solid 1px #C2C2C2;
+  }
+
+}
+
+@media (max-width: 420px){
+  .col1, .col2 {
+    width: 100%;
+  }
+  .header-card-offer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .avatar-card-offer{
+    width: 100px;
+    height: 100px;
+  }
+  .content {
+    flex-direction: column;
+  }
+  .footer-card-get {
+    width: 200px;
+    height: 200px;
+  }
+  .status{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+}

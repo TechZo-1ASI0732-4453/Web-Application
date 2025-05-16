@@ -1,0 +1,52 @@
+<div class="additional-information">
+  <mat-card>
+    <mat-card-header>
+      <div class="container-logo">
+        <img [src]="ong?.logo" alt="Ong Logo" class="logo-ong" width="175px" height="175px">
+      </div>
+      <h1>{{ ong?.name }}</h1>
+      <button mat-flat-button><a [href]="ong?.website" target="_blank">Visitar sitio web</a></button>
+    </mat-card-header>
+    <mat-card-content>
+      <section>
+        <h3>Categoría</h3>
+        <span><p>{{ ong?.category_name }}</p></span>
+      </section>
+      <section>
+        <h3>Dirección</h3>
+        <span><div><mat-icon fontIcon="location_on"></mat-icon></div> <p>{{ ong?.addressText }}</p></span>
+      </section>
+      <section>
+        <h3>Teléfono de Contacto</h3>
+        <span><div><mat-icon fontIcon="phone"></mat-icon> </div><p>{{ ong?.contact_number }}</p></span>
+      </section>
+      <section>
+        <h3>Correo electrónico</h3>
+        <span><div><mat-icon fontIcon="email"></mat-icon></div> <p>{{ ong?.email }}</p></span>
+      </section>
+      <section>
+        <h3>Número de Cuenta Bancaria</h3>
+        <span>
+           <div><mat-icon>account_balance</mat-icon></div>
+            <div class="container-account">
+              <p *ngFor="let account of ong?.account_number">
+              {{ account?.name }}: {{account.account}}<br>
+              CCI: {{ account.cci }}
+              </p>
+            </div>
+          </span>
+      </section>
+      <section>
+        <h3>Horario de atención</h3>
+        <span>
+         <div> <mat-icon>schedule</mat-icon></div>
+          <div class="container-schedule">
+          <p *ngFor="let time of ong?.attention_schedule">
+            {{ time.schedule }}
+          </p>
+          </div>
+          </span>
+      </section>
+    </mat-card-content>
+  </mat-card>
+</div>

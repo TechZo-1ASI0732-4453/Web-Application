@@ -1,0 +1,65 @@
+<div class="container">
+
+  <div class="search-by-category">
+    <h1>Categorías</h1>
+      <div class="box-categories-filters">
+          <button
+            mat-button
+            *ngFor="let category of categories"
+            (click)="filterProducts(category.name)"
+            [routerLink]="['/home/', 'products&' + category.name]"
+            [ngClass]="category.name === buttonSelected ? 'categorySelected' : 'chip-category-filter'">
+            {{ category.name }}
+          </button>
+      </div>
+  </div>
+
+  <div class="search-by-information">
+    <form [formGroup]="formProduct" (ngSubmit)="onSubmit()">
+    <h1>Buscar</h1>
+    <section>
+      <mat-label>Palabra Clave</mat-label>
+      <input matInput formControlName="wordKey" placeholder="Buscar..." class="search-input" >
+    </section>
+
+    <section>
+      <mat-label>Ubicacion</mat-label>
+
+      <select formControlName="countryId" (change)="onCountrySelectionChange()">
+        <option [ngValue]="null" selected [hidden]="!formProduct.value.countryId">{{!formProduct.value.countryId? 'Seleccionar un pais' : '..'}}</option>
+        <option *ngFor="let country of countries" [ngValue]='country.id'>{{country.name}}</option>
+      </select>
+
+      <select formControlName="departmentId"  (change)="onCitiesSelectionChange()">
+        <option   [ngValue]="null" selected [hidden]="!formProduct.value.departmentId">{{!formProduct.value.departmentId ? 'Seleccionar un departamento' : '..'}}</option>
+        <option *ngIf="!departments.length" disabled>No hay departamentos disponibles</option>
+        <option  *ngFor="let departments of departments" [ngValue]='departments.id'>{{ departments.name }}</option>
+      </select>
+
+      <select formControlName="districtId" class="search-input" >
+        <option  [ngValue]="null" selected [hidden]="!formProduct.value.districtId">{{!formProduct.value.districtId ? 'Seleccionar un distrito' : '..'}}</option>
+        <option *ngIf="!districts.length" disabled>No hay ciudades disponibles</option>
+        <option *ngFor="let district of districts" [ngValue]='district.id'>{{district.name}}</option>
+
+      </select>
+    </section>
+    <section>
+      <mat-label>Valor aproximado</mat-label>
+      <div class="range-price">
+        <input type="number"  placeholder="min" formControlName="priceMin" (beforeinput)="validateInput($event)">
+        <div class="box-icon"><mat-icon> compare_arrows</mat-icon></div>
+        <input type="number"  placeholder="máx" formControlName="priceMax" (beforeinput)="validateInput($event)">
+      </div>
+    </section>
+
+      <section class="btn-actions">
+      <button (click)="onSubmit()" class="btn-search">Buscar</button>
+      <button (click)="onClear()" class="btn-clear">Reiniciar</button>
+      </section>
+
+    </form>
+  </div>
+
+</div>
+
+

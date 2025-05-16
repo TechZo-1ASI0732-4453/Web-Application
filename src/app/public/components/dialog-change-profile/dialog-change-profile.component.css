@@ -1,0 +1,94 @@
+.container{
+  padding: 1% 15% 2% 15%;
+}
+.button-close{
+  position: absolute;
+  z-index: 1;
+  right:0.7rem;
+  top:0.7rem;
+  background: transparent;
+  border: none;
+  transition: 1s;
+}
+
+
+.button-close:hover{
+  transform: scale(1.6);
+}
+
+.dialog-title, .dialog-content,.dialog-actions{
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.dialog-title h1{
+  font-family: inherit;
+  font-weight: bolder;
+  font-size: 8vh;
+  line-height: 8vh;
+}
+
+.dialog-content{
+  font-size: 3vh;
+  line-height: 3vh;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+.dialog-content ngx-dropzone{
+  width: 100%;
+  height: 15rem;
+  display: flex;
+  justify-content: center;
+}
+.dialog-content ngx-dropzone-image-preview{
+  width: 100%;
+}
+
+.dialog-actions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dialog-actions button{
+  width: 40%;
+  margin: 0.2rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  font-weight: bolder;
+  font-family: inherit;
+  transition: 1s;
+}
+
+.dialog-actions button:hover{
+  transform: scale(1.02);
+
+}
+
+.button-confirm{
+  background-color: #FFD146;
+  border:solid 2px #FFD146;
+}
+
+@media(max-width:850px){
+  .dialog-title h1{
+    font-size: 4vh;
+    line-height: 4vh;
+  }
+  .dialog-content{
+    font-size: 2vh;
+    line-height: 2vh;
+  }
+
+  .dialog-actions button{
+    width: 75%;
+  }
+
+  .container{
+    padding: 1% 2% 2% 2%;
+  }
+
+  .check{
+    width: 100px;
+  }
+}

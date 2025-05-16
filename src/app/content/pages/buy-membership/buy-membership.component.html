@@ -1,0 +1,102 @@
+<div class="container">
+  <button mat-button routerLink="/memberships" class="button-back">
+    <div class="back-icon">
+      <mat-icon fontIcon="keyboard_backspace"></mat-icon>
+    </div>
+  </button>
+
+  <form>
+    <div class="row">
+
+      <div class="col">
+        <section class="card-position">
+          <div class="card-container" [class.flipped]="isFlipped">
+            <div class="card">
+              <div class="card-front">
+                <div class="card-logos">
+                  <div class="chip-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 50 30" fill="white">
+                      <rect width="48" height="30" rx="4" ry="4" fill="#CCCCCC"/>
+                      <path d="M12 15h24v2H12v-2zm0 6h24v2H12v-2z" fill="#999999"/>
+                    </svg>
+                  </div>
+                  <div class="visa-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 100 30" fill="white">
+                      <text x="0" y="35" font-size="30" font-family="Arial, sans-serif" font-weight="bold" fill="white">VISA</text>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="card-number">{{ cardNumber || '0000 0000 0000 0000' }}</div>
+                <div class="card-name">{{ cardName || 'NOMBRE COMPLETO' }}</div>
+                <div class="card-expiration">{{ expMonth || 'MM' }}/{{ expYear || 'YY' }}</div>
+              </div>
+
+              <div class="card-back">
+                <div class="card-cvv">{{ cvv || '000' }}</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <h2 class="title">Información de la Tarjeta</h2>
+
+        <div class="flex-2 inputBox2">
+
+          <div>
+            <span>Número de tarjeta</span>
+            <input class="input-text" type="text" maxlength="16" placeholder="0000 0000 0000 0000"
+              [(ngModel)]="cardNumber" name="cardNumber">
+          </div>
+
+          <div>
+            <span>Nombre completo</span>
+            <input class="input-text" type="text" placeholder="Nombre completo"
+              [(ngModel)]="cardName" name="cardName">
+          </div>
+        </div>
+
+        <div class="flex-2 inputBox2">
+          <div>
+            <span>Mes</span>
+            <input class="input-text" type="text" maxlength="2" placeholder="MM"
+              [(ngModel)]="expMonth" name="expMonth">
+          </div>
+
+          <div>
+            <span>Año</span>
+            <input class="input-text" type="text" maxlength="2" placeholder="YY"
+              [(ngModel)]="expYear" name="expYear">
+          </div>
+        </div>
+
+        <div class="inputBox2">
+          <span>CVV</span>
+          <input class="input-text" type="password" maxlength="3" placeholder="000"
+            [(ngModel)]="cvv" name="cvv"
+            (focus)="flipCard(true)" (blur)="flipCard(false)">
+        </div>
+
+      </div>
+
+      <div class="col">
+        <div class="logo">
+          <img src="../../../assets/images/logos/logo-2.png" alt="cambiazo-logo" class="img-logo"/>
+        </div>
+
+        <h2 class="title">Datos de Facturación</h2>
+        <hr>
+
+        <p><b>Nombre:</b> {{user.name}}</p>
+        <p><b>Correo electrónico:</b> {{user.email}}</p>
+        <p><b>Teléfono:</b> {{user.phone}}</p>
+        <p><b>Membresía:</b> {{membership.name}}</p>
+        <p><b>A pagar:</b> ${{membership.price}}</p>
+
+        <input type="button" class="submit-btn" (click)="buyMembership()" value="Pagar">
+      </div>
+
+    </div>
+  </form>
+
+</div>

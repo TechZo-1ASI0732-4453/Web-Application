@@ -1,0 +1,17 @@
+<div class="container">
+  <button class="button-close"  mat-dialog-close><mat-icon>close</mat-icon></button>
+  <div class="dialog-title" mat-dialog-title>
+    <h1>Inicia Sesión o Registrate</h1>
+  </div>
+
+  <div class="dialog-content" mat-dialog-content>
+    ¡Para ofertar, publicar un anuncio o comprar una membresia necesitas haber iniciado sesión primero!<br>
+    Regístrate en solo 5 segundos y accede a un control total sobre tus anuncios,
+    así como la posibilidad de ofertar.
+  </div>
+
+  <div class="dialog-actions" mat-dialog-actions>
+    <button class="button-login" mat-button (click)="onLogin()">Iniciar Sesion</button>
+    <button class="button-register" mat-button (click)="onRegister()">Registrarse</button>
+  </div>
+</div>

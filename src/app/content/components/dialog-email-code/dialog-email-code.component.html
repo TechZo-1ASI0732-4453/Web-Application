@@ -1,0 +1,33 @@
+<div class="container">
+  <button class="button-close" routerLink="/login" mat-dialog-close>
+    <mat-icon fontIcon="close"></mat-icon>
+  </button>
+  <div class="dialog-title" mat-dialog-title>
+    <h1>Código de Verificación</h1>
+  </div>
+
+  <div class="dialog-content">
+    Ingresa el código enviado a su correo electrónico
+  </div>
+
+  <div class="input-code" style="position: relative;">
+    <input
+      name="code"
+      placeholder="- - - -"
+      class="mat-input-element"
+      [(ngModel)]="code"
+      maxlength="4"
+      (input)="onCodeInput()">
+    <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+  <div class="dialog-content" style="margin-top: 20px">
+    Ingrese el código de 4 dígitos
+  </div>
+
+  <div class="dialog-actions" mat-dialog-actions>
+    <button class="button-verify" mat-button (click)="verify()">Verificar</button>
+  </div>
+</div>

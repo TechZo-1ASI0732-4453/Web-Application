@@ -1,0 +1,65 @@
+section{
+  background-color: #FFD146;
+  height: 4rem;
+  margin:2rem 0 0 4rem;
+  align-content: center;
+  padding-left: 1.5rem;
+  border-radius: 30px 0 0 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombras en los bordes */
+
+}
+
+section h1{
+  margin:0;
+  font-size:2rem;
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.filter-section{
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 2rem;
+}
+
+app-search-products{
+  width: 25rem;
+  padding: 2rem;
+}
+
+app-products-found {
+  width: 75%;
+  padding: 2rem 0;
+
+}
+
+@media (max-width: 860px){
+
+  app-products-found {
+    width: 60%;
+  }
+
+  section{
+    margin:2rem 0 0 2rem;
+  }
+}
+
+@media (max-width: 735px){
+  .filter-section{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  app-products-found {
+    width: auto;
+  }
+  app-search-products {
+    width: 100%;
+
+  }
+
+  section h1{
+    font-size:1.5rem;
+  }
+
+}

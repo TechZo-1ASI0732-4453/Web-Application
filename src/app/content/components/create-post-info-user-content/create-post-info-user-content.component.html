@@ -1,0 +1,70 @@
+<form [formGroup]="formProduct">
+  <section class="section-1">
+    <h1 class="title">Datos de Contacto</h1>
+
+    <mat-label>Nombre</mat-label>
+    <input matInput [value]="user?.name" disabled>
+
+    <mat-label>Correo electrónico</mat-label>
+    <input matInput [value]="user?.username" disabled>
+
+    <mat-label>Teléfono</mat-label>
+    <input matInput [value]="user?.phoneNumber" disabled><br>
+
+    <mat-label>País</mat-label>
+    <select formControlName="countryId" (change)="onCountryChange()">
+      <option [ngValue]="null" selected [hidden]="!formProduct.value.countryId">{{!formProduct.value.countryId ? '' : '..'}}</option>
+      <option *ngFor="let country of countries" [ngValue]="country.id" >{{country.name}}</option>
+    </select>
+    <div>
+      <span *ngIf="formProduct.get('countryId')?.invalid && formProduct.get('countryId')?.touched">
+        *Seleccion requerida
+      </span>
+    </div>
+
+    <mat-label>Departamentos</mat-label>
+    <select formControlName="departmentId" (change)="onDepartmentChange()">
+      <option [ngValue]="null" selected [hidden]="!formProduct.value.departmentId">{{!formProduct.value.departmentId ? '' : '..'}}</option>
+      <option *ngIf="!departments.length" disabled>No hay departamentos disponibles</option>
+      <option *ngFor="let department of departments" [ngValue]="department.id">{{ department.name }}</option>
+    </select>
+    <div>
+      <span *ngIf="formProduct.get('departmentId')?.invalid && formProduct.get('departmentId')?.touched">
+        *Seleccion requerida
+      </span>
+    </div>
+
+    <mat-label>Distritos</mat-label>
+    <select formControlName="districtId">
+      <option [ngValue]="null" selected [hidden]="!formProduct.value.districtId">{{!formProduct.value.districtId ? '' : '..'}}</option>
+      <option *ngIf="!districts.length" disabled>No hay ciudades disponibles</option>
+      <option *ngFor="let district of districts" [ngValue]="district.id">{{district.name}}</option>
+    </select>
+    <div>
+      <span *ngIf="formProduct.get('districtId')?.invalid && formProduct.get('districtId')?.touched">
+        *Seleccion requerida
+      </span>
+    </div>
+
+    <span class="box-policy">
+      <mat-checkbox [formControl]="acceptPolicy"></mat-checkbox>
+      <mat-label>Acepto la <a routerLink="/privacy-policy">Politica de Privacidad</a></mat-label>
+    </span>
+    <div>
+      <span *ngIf="acceptPolicy.invalid && acceptPolicy.touched">
+        *Confirma los términos
+      </span>
+    </div>
+  </section>
+
+  <section class="section-2" *ngIf="user && (+user.membership !== 1)">
+    <div class="box-boost">
+      <mat-label>Boost de Visibilidad</mat-label>
+      <mat-slide-toggle formControlName="boost"></mat-slide-toggle>
+    </div>
+    <br>
+    <p>
+      Activa tu boost! Al hacerlo, tu producto será destacado en la página principal durante un día, aumentando tus oportunidades de encontrar un intercambiador.
+    </p>
+  </section>
+</form>

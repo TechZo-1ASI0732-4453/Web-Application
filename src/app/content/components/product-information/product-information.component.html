@@ -1,0 +1,88 @@
+<!-- product-information.component.html -->
+<div *ngIf="loading" class="loading-message"></div>
+
+<div class="container-product-information" *ngIf="product || !loading">
+  <section><h1>{{ product.product_name }}</h1></section>
+
+  <div class="content-information">
+    <div class="product-information">
+      <div class="product-image">
+        <mat-card>
+          <mat-card-content>
+            <div>
+              <img [src]="product.images[0]" alt="Product image">
+              <ng-container *ngIf="!product.images?.length && product.image">
+                <img [src]="product.image" alt="Product image">
+              </ng-container>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="product-data">
+        <mat-card>
+          <mat-card-title>
+            <h1>S/. {{ product.price }} valor aprox.</h1>
+          </mat-card-title>
+          <mat-card-content>
+            <p>{{ product.description }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="product-details">
+        <mat-card>
+          <mat-card-content>
+            <h1>Detalles:</h1>
+            <h3>¿Dónde puedo intercambiar este objeto?</h3>
+            <p>{{ product.location.districtName }}</p>
+            <h3>¿Cambio por?</h3>
+            <p>{{ product.change_for }}</p>
+            <div class="product-category">
+              <p>Categoría:</p>
+              <p class="category">{{ product.category }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="user-information" *ngIf="user">
+      <div class="user-data">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              <img [src]="user.profilePicture" alt="user-image">
+            </mat-card-title>
+            <mat-card-subtitle>
+              <h1>{{ user.name }}</h1>
+              <button *ngIf="user.id === localStorage.getItem('id')" mat-button class="view-profile" routerLink="/profile">Ver perfil</button>
+              <button *ngIf="user.id !== localStorage.getItem('id')" mat-button [routerLink]="['/publisher-profile', user.id]" class="view-profile">Ver perfil</button>
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <!-- ➕ mostrar área de oferta solo si showOffer es true -->
+          <mat-card-content *ngIf="showOffer">
+            <hr>
+            <div class="user-interest">
+              <h1>¿Estas interesado?</h1>
+              <div class="button-container">
+                <button mat-button (click)="offer()">
+                  <div class="offer-button">
+                    <img src="./assets/images/icons/offer.png" alt="Offer icon" width="30" height="30">
+                    Ofertar
+                  </div>
+                </button>
+              </div>
+            </div>
+            <hr>
+            <button mat-button class="favorite-button" (click)="addToFavorites()">
+              <img src="./assets/images/icons/star.svg" alt="Favorite icon" width="40" height="40">
+            </button>
+            <br><br>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

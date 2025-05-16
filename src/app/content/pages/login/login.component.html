@@ -1,0 +1,62 @@
+<div class="login">
+  <button mat-button routerLink="/home" class="button-home">
+    <div class="home-icon">
+      <input type="image" src="https://cdn-icons-png.flaticon.com/512/25/25694.png" height="25px" width="25px"  alt="Home Icon"/>
+    </div>
+  </button>
+  <div class="boxB col1">
+    <form class="form-container" (ngSubmit)="login()" #loginForm="ngForm">
+      <img src="./assets/images/logos/logo-2.png" alt="cambiazo-logo" class="img-logo">
+      <h1 class="title">Iniciar Sesión</h1>
+      <button mat-button (click)="loginWithGoogle()" class="gmail">
+        <div class="gmail-logo-name">
+          <img src="https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png" height="20" width="20" alt="Logo Google">
+          <span class="gmail-text">Iniciar Sesión con Google</span>
+        </div>
+      </button>
+
+      <div class="line-text">
+        <div class="left"></div>
+        <p class="subtitle">o inicia sesión con correo</p>
+        <div class="right"></div>
+      </div>
+
+      <mat-label><b>Usuario</b></mat-label>
+      <input name="username" placeholder="Email" class="mat-input-element" [(ngModel)]="username" (input)="onUsernameInput()">
+
+      <div class="forgot-password">
+        <mat-label><b>Contraseña</b></mat-label>
+
+        <a class="remember-password" routerLink="/verify-email"><b>¿No recuerdas la contraseña?</b></a>
+
+      </div>
+      <div class="input-password">
+        <input [type]="hide ? 'password' : 'text'"
+               name="password"
+               placeholder="Password"
+               [(ngModel)]="password" (input)="onPasswordInput()"
+               class="text-input-password"/>
+        <button class="visibility" matSuffix (click)="hide1($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <img [src]="'assets/images/icons' + (hide ? '/visibility_off.png' : '/visibility.png')" style="width: 15px;height: 15px" alt="">
+        </button>
+      </div>
+
+      <div *ngIf="showError" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+
+      <button mat-button type="submit" class="button"><b>Iniciar Sesión</b></button>
+
+
+      <p class="register">¿No tienes una cuenta? <a routerLink="/register"> Crea tu cuenta</a></p>
+
+
+    </form>
+  </div>
+  <div class="boxB col2">
+    <img src="https://amiif.org/wp-content/uploads/2022/08/un-simple-apreton-de-manos-puede-cambiar-el-rumbo-de-las-enfermedades-infecciosas.jpeg" alt="img">
+  </div>
+
+</div>
+<app-footer-content-2></app-footer-content-2>

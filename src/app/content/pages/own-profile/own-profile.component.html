@@ -1,0 +1,11 @@
+<app-header-profile></app-header-profile>
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+  <a mat-tab-link [routerLink]="['/profile/my-posts']" routerLinkActive #rlaPublicaciones="routerLinkActive" [active]="rlaPublicaciones.isActive">Publicaciones</a>
+  <a mat-tab-link [routerLink]="['/profile/offers']" routerLinkActive #rlaOfertas="routerLinkActive" [active]="rlaOfertas.isActive">Ofertas</a>
+  <a mat-tab-link [routerLink]="['/profile/complete-changes']" routerLinkActive #rlaCambios="routerLinkActive" [active]="rlaCambios.isActive">Cambios Completados</a>
+  <a mat-tab-link [routerLink]="['/profile/favourites']" routerLinkActive #rlaFavoritos="routerLinkActive" [active]="rlaFavoritos.isActive">Favoritos</a>
+  <a mat-tab-link [routerLink]="['/profile/reviews']" routerLinkActive #rlaResenas="routerLinkActive" [active]="rlaResenas.isActive">Reseñas</a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>

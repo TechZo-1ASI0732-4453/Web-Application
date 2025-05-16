@@ -1,0 +1,188 @@
+<div class="container-image-background">
+  <img class="image-background" src="https://png.pngtree.com/thumb_back/fh260/background/20200731/pngtree-blue-carbon-background-with-sport-style-and-golden-light-image_371487.jpg">
+  <div class="mesh-background">
+    <button mat-button routerLink="/profile" class="button-back">
+      <div class="back-icon">
+        <mat-icon fontIcon="keyboard_backspace"></mat-icon>
+      </div>
+    </button>
+  </div>
+  <div class="container-profile">
+    <mat-card>
+      <mat-card-header>
+        <div class="container-avatar">
+          <div *ngIf="!isImageLoaded" class="skeleton-avatar"></div>
+          <div *ngIf="isImageLoaded"
+               class="user-img-background"
+               [ngStyle]="{ 'background-image': 'url(' + user.profilePicture + ')' }">
+          </div>
+
+          <button class="button-edit-profile-image" (click)="changeImage()" mat-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content class="content-header">
+        <h1 *ngIf="isNameLoaded; else nameSkeleton">{{user.name}}</h1>
+        <ng-template #nameSkeleton>
+          <div class="skeleton-text"></div>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+  <div class="edit-title">
+    <p>Configuración de Perfil:</p>
+  </div>
+<div class="edit-profile-content">
+  <div class="line-text">
+    <div class="line"></div>
+  </div>
+  <div class="edit-profile-container">
+    <div class="container-edit-profile">
+      <div class="content-edit">
+        <div class="boxB col1">
+          <form class="form-container" [formGroup]="editProfileForm">
+            <div class="form-outline mb-4">
+              <mat-label><b>Nombre</b></mat-label>
+              <input
+                [class.border-danger]="editProfileForm.controls['name'].errors && (editProfileForm.controls['name'].touched || submitted)"
+                formControlName="name"
+                type="text"
+                class="mat-input-element"/>
+              <div *ngIf="(editProfileForm.controls['name'].touched || submitted) && editProfileForm.controls['name'].getError('required')" class="required">
+                Nombre es requerido.
+              </div>
+            </div>
+
+            <div class="form-outline mb-4">
+              <mat-label><b>Correo electrónico</b></mat-label>
+              <input
+                [class.border-danger]="(editProfileForm.controls['username'].errors && (editProfileForm.controls['username'].touched || submitted))"
+                formControlName="username"
+                type="email"
+                class="mat-input-element"/>
+              <div *ngIf="(editProfileForm.controls['username'].touched || submitted) && editProfileForm.controls['username'].getError('required')" class="required">
+              </div>
+              <div *ngIf="editProfileForm.controls['username'].touched && editProfileForm.controls['username'].getError('validEmail')" class="required">
+                Por favor, introduce un correo electrónico válido.
+              </div>
+            </div>
+
+            <div class="form-outline mb-4">
+              <mat-label><b>Teléfono</b></mat-label>
+              <input
+                [class.border-danger]="editProfileForm.controls['phoneNumber'].errors && (editProfileForm.controls['phoneNumber'].touched || submitted)"
+                formControlName="phoneNumber"
+                type="tel"
+                maxlength="9"
+                class="mat-input-element"/>
+              <div *ngIf="(editProfileForm.controls['phoneNumber'].touched || submitted) && editProfileForm.controls['phoneNumber'].getError('required')" class="required">
+                Teléfono es requerido.
+              </div>
+              <div *ngIf="(editProfileForm.controls['phoneNumber'].touched || submitted) && editProfileForm.controls['phoneNumber'].getError('onlyNumbers')" class="required">
+              </div>
+              <div *ngIf="(editProfileForm.controls['phoneNumber'].touched || submitted) && editProfileForm.controls['phoneNumber'].getError('minlength')" class="required">
+                Ingrese un Teléfono valido.
+              </div>
+              <div *ngIf="(editProfileForm.controls['phoneNumber'].touched || submitted) && editProfileForm.controls['phoneNumber'].getError('maxlength')" class="required">
+              </div>
+            </div>
+
+            <button mat-button type="button" (click)="onSubmit()" class="button">
+              <b>Guardar Cambios</b>
+            </button>
+          </form>
+
+
+          <div *ngIf="!changePassword">
+            <button mat-button type="button" (click)="changePasswordButton()" class="button-change-password">
+              <span><b>Cambiar Contraseña</b></span>
+            </button>
+          </div>
+
+          <div *ngIf="changePassword">
+            <hr style="margin: 20px 0 20px 0">
+            <h2><b>Cambiar contraseña</b></h2>
+            <form class="form-container" [formGroup]="changePasswordForm">
+              <div class="form-outline mb-4">
+                <mat-label><b>Nueva Contraseña</b></mat-label>
+                <input formControlName="newPassword" type="password" class="mat-input-element"/>
+                <div *ngIf="changePasswordForm.controls['newPassword'].invalid && changePasswordForm.controls['newPassword'].touched" class="required">
+                  Minimo 8 caracteres.
+                </div>
+              </div>
+
+              <div class="form-outline mb-4">
+                <mat-label><b>Repetir Nueva Contraseña</b></mat-label>
+                <input formControlName="newPasswordRepeated" type="password" class="mat-input-element"/>
+                <div *ngIf="submitted && changePasswordForm.controls['newPasswordRepeated'].invalid" class="required">
+                  La contraseña no coincide.
+                </div>
+              </div>
+
+              <button mat-button type="button" (click)="onChangePassword()" class="button">
+                Cambiar Contraseña
+              </button>
+
+              <button mat-button type="button" (click)="forgotPassword()" class="button-change-password">
+                <span>Olvidé mi contraseña</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+        <div class="boxB col2">
+          <button mat-button type="button" (click)="closeSession()" class="button-close-session">
+            <div class="close-session">
+              <mat-icon fontIcon="exit_to_app"></mat-icon>
+              <span class="white">Cerrar Sesión</span>
+            </div>
+          </button>
+
+          <ng-container *ngIf="membership" class="card-container">
+            <mat-card class="card">
+              <mat-card-header class="header">
+                <h1 class="title">Mi suscripción</h1>
+              </mat-card-header>
+              <mat-card-content class="content">
+                <mat-card-subtitle class="subtitle">
+                  <p class="membership-name">{{ membership.name }}</p>
+                  <p class="membership-price" *ngIf="membership.price === 0; else priceSection">GRATIS</p>
+                  <ng-template #priceSection>
+                    <p class="membership-price">
+                    </p>
+                  </ng-template>
+                </mat-card-subtitle>
+              </mat-card-content>
+              <mat-card-footer>
+                <button mat-button type="button" (click)="cancelMembership()" *ngIf="permittedCancelPlan" class="cancel-membership">
+                  <div class="delete-account">
+                    <span>Anular Suscripción</span>
+                  </div>
+                </button>
+                <button mat-button type="button" routerLink="/memberships" class="upgrade-membership">
+                  <div class="upgrade-account">
+                    <span>Cambiar plan</span>
+                  </div>
+                </button>
+              </mat-card-footer>
+            </mat-card>
+          </ng-container>
+
+
+          <button mat-button type="button" (click)="deleteAccount()" class="button-delete-account">
+            <div class="delete-account">
+              <mat-icon fontIcon="delete"></mat-icon>
+              <span>Eliminar mi Cuenta</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

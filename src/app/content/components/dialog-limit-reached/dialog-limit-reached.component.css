@@ -1,0 +1,87 @@
+:host {
+  display: block;
+}
+
+.container {
+  position: relative;
+  padding: 3.5rem 6vw 3rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  max-width: 540px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.button-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #555;
+  opacity: 0.7;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.button-close:hover {
+  transform: scale(1.25);
+  opacity: 1;
+}
+
+.dialog-title h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(28px, 6vw, 44px);
+  font-weight: 800;
+  color: #000;
+}
+
+.dialog-content {
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.dialog-actions button {
+  background-color: #FFD146;
+  border: 2px solid #FFD146;
+  border-radius: 8px;
+  padding: 0.85rem 1.5rem;
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  font-family: inherit;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dialog-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 2.4rem 1.4rem 3rem;
+  }
+
+  .dialog-title h1 {
+    font-size: 6.5vw;
+  }
+
+  .dialog-content {
+    font-size: 4vw;
+  }
+
+  .dialog-actions button {
+    width: 100%;
+    font-size: 18px;
+  }
+}
