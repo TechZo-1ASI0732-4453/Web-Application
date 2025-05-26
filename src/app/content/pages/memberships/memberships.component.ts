@@ -30,7 +30,6 @@ declare var paypal: any;
 })
 
 export class MembershipsComponent implements OnInit {
-
   memberships: Memberships[] = [];
   membershipCurrent: any;
   user: Users | null = null;
@@ -50,10 +49,30 @@ export class MembershipsComponent implements OnInit {
 ) {}
 
   ngOnInit() {
-    this.isLoggedIn = this.userService.isLogged;
     this.getUser();
     this.loadMemberships();
     this.getMembershipCurrent();
+    this.isLoggedIn = this.userService.isLogged;
+    const userId = localStorage.getItem('id');
+
+    const calls: any = {
+      allPlans: this.membershipsService.getMemberships()
+    };
+
+    if (userId) {
+      calls.currentPlan = this.membershipsService.getUserMembership(userId);
+      calls.userData    = this.userService.getUserById(+userId);
+    }
+
+    forkJoin(calls).subscribe(
+      (result: any) => {
+        this.memberships = result.allPlans;
+        if (result.currentPlan) this.membershipCurrent = result.currentPlan;
+        if (result.userData)    this.user = result.userData;
+        this.dataLoaded = true;
+      },
+      err => console.error('Error loading data', err)
+    );
   }
 
   getMembershipCurrent() {
