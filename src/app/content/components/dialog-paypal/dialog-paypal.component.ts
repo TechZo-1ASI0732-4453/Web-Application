@@ -9,6 +9,7 @@ import {
   MembershipsService,
 } from '../../service/memberships/memberships.service';
 import { switchMap } from 'rxjs/operators';
+import {CreateInvoicePayload, InvoiceResource, InvoiceService} from "../../service/invoice/invoice.service";
 declare const paypal: any;
 
 export interface DialogData {
@@ -22,6 +23,7 @@ export interface DialogData {
 
 export interface DialogResult {
   subscriptionUpdated: boolean;
+  invoice?: InvoiceResource;
 }
 
 @Component({
@@ -37,6 +39,7 @@ export class DialogPaypalComponent implements OnInit {
     private dialogRef: MatDialogRef<DialogPaypalComponent, DialogResult>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private membershipsService: MembershipsService,
+    private invoiceService: InvoiceService
   ) {}
 
   ngOnInit(): void {
@@ -66,15 +69,26 @@ export class DialogPaypalComponent implements OnInit {
             this.membershipsService.putSubscriptionStatus(
               this.data.subscriptionId,
               subBody
-            ).subscribe({
-              next: () => {
-                this.dialogRef.close({ subscriptionUpdated: true });
-              },
-              error: (error) => {
-                console.error('Error updating subscription:', error);
-                this.dialogRef.close({ subscriptionUpdated: false });
-              }
-            });
+            )
+
+              .pipe(
+                switchMap(() => {
+                  const payload: CreateInvoicePayload = {
+                    totalAmount: this.data.price,
+                    concept:     this.data.name,
+                    userId:      this.data.userId
+                  };
+                  return this.invoiceService.createInvoice(payload);
+                })
+              )
+
+              .subscribe({
+                next:  invoice => this.dialogRef.close({ subscriptionUpdated: true, invoice }),
+                error: err => {
+                  console.error('Error generando boleta:', err);
+                  this.dialogRef.close({ subscriptionUpdated: true });
+                }
+              });
 
           }),
 
