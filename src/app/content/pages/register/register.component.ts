@@ -144,7 +144,7 @@ export class RegisterComponent {
     });
   }
 
-  resolved(event: string) {
+  resolved(event: any) {
     this.recaptchaToken = event;
   }
 
