@@ -119,6 +119,15 @@
       </button>
 
       <p class="login">¿Ya tienes una cuenta? <a routerLink="/login"> Inicia Sesión</a></p>
+      <re-captcha
+        [siteKey]="recaptchaSiteKey"
+        (resolved)="resolved($event)">
+      </re-captcha>
+      <div *ngIf="captchaInvalid" class="requisito">
+        Por favor, verifica que no eres un robot.
+      </div>
+  
+
     </form>
   </div>
   <div class="boxB col2">

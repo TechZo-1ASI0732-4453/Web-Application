@@ -14,6 +14,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatInput} from "@angular/material/input";
 import { UsersService } from "../../service/users/users.service";
 import {AuthGoogleService} from "../../service/auth-google/auth-google.service";
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,8 @@ import {AuthGoogleService} from "../../service/auth-google/auth-google.service";
     RouterLink,
     ReactiveFormsModule,
     NgIf,
-    MatSuffix
+    MatSuffix,
+    RecaptchaModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -35,6 +37,9 @@ export class RegisterComponent {
   hide = true;
   hiderepeat = true;
   submitted = false;
+  recaptchaToken: string | null = null;
+  captchaInvalid: boolean = false;
+  recaptchaSiteKey = '6LcJQUorAAAAAOYbo-uVM_Fxb-rWRGq5clT9RJ1D'; // Replace with your actual reCAPTCHA site key
 
   registerForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -139,7 +144,19 @@ export class RegisterComponent {
     });
   }
 
+  resolved(event: string) {
+    this.recaptchaToken = event;
+  }
+
   addUser() {
+
+    if(!this.recaptchaToken) {
+      this.captchaInvalid = true;
+      return;
+    }else {
+      this.captchaInvalid = false;
+    }
+
     if (this.registerForm.valid) {
       const newUser = {
         username: this.registerForm.value.email,
