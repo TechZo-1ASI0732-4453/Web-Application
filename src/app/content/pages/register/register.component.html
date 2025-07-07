@@ -107,8 +107,16 @@
 
       <div class="checkbox-accept mb-4">
         <input type="checkbox" class="accept"><mat-label class="checkbox-text"><b>Aceptar <a routerLink="/terms-of-use">Términos y condiciones</a></b></mat-label>
+      </div >
+      <div style="width: 100%;display: flex; justify-content: center; align-items: center; margin: 30px 0 15px;">
+        <re-captcha
+        [siteKey]="recaptchaSiteKey"
+        (resolved)="resolved($event)">
+      </re-captcha>
+      <div *ngIf="captchaInvalid" class="requisito">
+        Por favor, verifica que no eres un robot.
       </div>
-
+    </div>
       <button
         mat-button
         type="button"
@@ -119,13 +127,6 @@
       </button>
 
       <p class="login">¿Ya tienes una cuenta? <a routerLink="/login"> Inicia Sesión</a></p>
-      <re-captcha
-        [siteKey]="recaptchaSiteKey"
-        (resolved)="resolved($event)">
-      </re-captcha>
-      <div *ngIf="captchaInvalid" class="requisito">
-        Por favor, verifica que no eres un robot.
-      </div>
   
 
     </form>
