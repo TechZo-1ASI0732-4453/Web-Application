@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   /*baseUrl: 'https://cambiazo-backend.azurewebsites.net',*/
-  baseUrl: 'https://cambiazo-backend-bjdkd7hhgqa8gygw.eastus-01.azurewebsites.net',
+  baseUrl: 'https://cambiazo-techzo-gzdtcfcca4fxeaec.westus-01.azurewebsites.net/',
 
   firebase: {
     apiKey: "AIzaSyC1DjypqSfivN6N6ch-Kv6YVFupAF0inO8",
