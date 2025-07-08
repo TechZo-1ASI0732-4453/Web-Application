@@ -6,10 +6,8 @@ import { DialogSuccessfulExchangeComponent } from "../../../public/components/di
 import {MatCard, MatCardAvatar, MatCardContent, MatCardFooter, MatCardHeader} from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
-import {PostsService} from "../../service/posts/posts.service";
-import {filter, map} from "rxjs/operators";
-import {forkJoin} from "rxjs";
 import {CambiazoStateService} from "../../states/cambiazo-state.service";
+import {EmailjsService} from "../../service/emailjs/emailjs.service";
 
 @Component({
   selector: 'app-user-get-offers',
@@ -34,7 +32,8 @@ export class UserGetOffersComponent implements OnInit {
 
   constructor(
     private offersService: OffersService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private emailjsService: EmailjsService,
   ) {}
 
   ngOnInit() {
@@ -55,9 +54,10 @@ export class UserGetOffersComponent implements OnInit {
     });
   }
 
-  setStatusAccepted(offerId: number) {
-    this.offersService.updateOfferStatus(offerId.toString(), 'Aceptado').subscribe(() => {
-      const offer = this.offers.find(o => o.id === offerId);
+  setStatusAccepted(offer: any) {
+    const offerId = offer.id;
+    this.offersService.updateOfferStatus(offer.id.toString(), 'Aceptado').subscribe(() => {
+      this.sendNotification('ACEPTADA', offer.userOwn.name, offer.productOwn.name, offer.userOwn.email)
       this.offers = this.offers.filter(o => o.id !== offerId);
       if (offer) {
         this.dialog.open(DialogSuccessfulExchangeComponent, {
@@ -73,14 +73,42 @@ export class UserGetOffersComponent implements OnInit {
     });
   }
 
-  setStatusDenied(offerId: number) {
+  setStatusDenied(offer: any) {
+    const offerId = offer.id;
     const dialogRef = this.dialog.open(DialogDeniedOfferComponent, { disableClose: true });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.offersService.updateOfferStatus(offerId.toString(), 'Denegado').subscribe(() => {
+          this.sendNotification('RECHAZADA', offer.userOwn.name, offer.productOwn.name, offer.userOwn.email)
           this.offers = this.offers.filter(o => o.id !== offerId);
         });
       }
     });
   }
+
+  sendNotification(status: string,name:string,productName:string,email:string): void {
+    this.emailjsService.sendNotification(
+      status,
+      name,
+      productName,
+      email,
+    ).subscribe({ 
+      next: (response) => {
+        console.log('Email enviado con éxito:', response);
+      },
+      error: (error) => {
+        console.error('Error al enviar el correo electrónico:', error);
+        console.error('status', status);
+        console.error('name', name); 
+        console.error('productName', productName);
+        console.error('email', email);
+      }
+    });
+  }
+
+  
+
+
+
+  
 }

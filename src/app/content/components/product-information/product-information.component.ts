@@ -118,7 +118,8 @@ export class ProductInformationComponent implements OnInit {
               product_id: this.product.id,
               user_id: this.user.id,
               product_name: this.product.product_name,
-              user_name: this.user.name
+              user_name: this.user.name,
+              user_email: this.user.username,
             },
             width: '100rem'
           });
