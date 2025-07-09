@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node init && ng serve",
+    "build": "node init && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -22,10 +22,12 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@emailjs/browser": "^4.3.3",
+    "dotenv": "^8.2.0",
     "emailjs-com": "^3.2.0",
     "firebase": "^11.6.0",
     "ng-recaptcha": "^13.2.1",
     "ngx-dropzone": "^3.1.0",
+    "node-fetch": "^3.3.2",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.11.0",
     "tslib": "^2.3.0",
