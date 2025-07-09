@@ -98,6 +98,7 @@ mat-card {
 }
 
 .product-details{
+  position: relative;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -254,6 +255,34 @@ mat-card-subtitle{
     height: 200px;
   }
 }
+
+.copy-link {
+  position: absolute;
+  display: flex;
+  top: 0.75rem;
+  right: 0.75rem;
+  background-color: #dfdada;
+  border: 2px solid #dfdada;
+  border-radius: 8px;
+  height: 36px;
+  width: 36px;
+  min-width: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-link mat-icon {
+  padding-left: 10px;
+}
+
+.copy-link:hover {
+  border: 2px solid #FFD146;
+  background-color: #FFD146;
+  cursor: pointer;
+}
+
 
 @media (max-width: 450px) {
   .product-category{

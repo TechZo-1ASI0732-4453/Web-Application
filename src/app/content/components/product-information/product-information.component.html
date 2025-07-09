@@ -43,6 +43,9 @@
               <p class="category">{{ product.category }}</p>
             </div>
           </mat-card-content>
+          <button mat-stroked-button class="copy-link" (click)="copyLink(user.id)">
+            <mat-icon>link</mat-icon>
+          </button>
         </mat-card>
       </div>
     </div>

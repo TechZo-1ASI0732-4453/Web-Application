@@ -2,12 +2,18 @@
   <section><h1>Publicar Productos</h1></section>
   <div class="container-create-post">
     <div class="section-1">
-      <app-create-post-info-user-content class="section-info-contact"></app-create-post-info-user-content>
-      <button class="button-submit btn-desk" mat-stroked-button (click)="onPost()">Publicar</button>
+      <app-create-post-info-user-content class="section-info-contact" ></app-create-post-info-user-content>
+      <button class="button-submit btn-desk" mat-stroked-button (click)="onPost()" [disabled]="loading">
+        <div *ngIf="!loading">Publicar</div>
+        <mat-spinner *ngIf="loading" diameter="20" style="margin-left: 8px;"></mat-spinner>
+      </button>
     </div>
 
     <app-create-info-post-content class="section-info-post"></app-create-info-post-content>
   </div>
 
-  <button class="button-submit btn-res" mat-stroked-button (click)="onPost()">Publicar</button>
+  <button class="button-submit btn-res" mat-stroked-button (click)="onPost()" [disabled]="loading">
+   <div *ngIf="!loading">Publicar</div>
+   <mat-spinner *ngIf="loading" diameter="20" style="margin-left: 8px;"></mat-spinner>
+  </button>
 </div>

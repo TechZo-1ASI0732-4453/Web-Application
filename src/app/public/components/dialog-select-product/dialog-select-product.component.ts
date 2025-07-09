@@ -4,13 +4,12 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import { CommonModule, NgForOf } from '@angular/common'
 import { MatCardModule } from '@angular/material/card'
-import { UsersService } from '../../../content/service/users/users.service'
 import { PostsService } from '../../../content/service/posts/posts.service'
 import { OffersService } from '../../../content/service/offers/offers.service'
 import { Products } from '../../../content/model/products/products.model'
 import { Offers } from '../../../content/model/offers/offers.model'
 import { DialogOfferSuccessfulComponent } from '../dialog-offer-successful/dialog-offer-successful.component'
-
+import { EmailjsService } from '../../../content/service/emailjs/emailjs.service'
 @Component({
   selector: 'app-dialog-select-product',
   standalone: true,
@@ -33,10 +32,10 @@ export class DialogSelectProductComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DialogSelectProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private userService: UsersService,
     private postService: PostsService,
     private offersService: OffersService,
-    private dialogSuccess: MatDialog
+    private dialogSuccess: MatDialog,
+    private emailjsService: EmailjsService
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +43,7 @@ export class DialogSelectProductComponent implements OnInit {
     this.postService.getProductsFlatByUserId(+uid).subscribe(p => (this.items = p))
     this.offersService.getAllOffersByUserOwnId(uid).subscribe(o => (this.offers = o))
   }
+
 
   hasOffered(prod: Products): boolean {
     return this.offers.some(o => {
@@ -74,7 +74,11 @@ export class DialogSelectProductComponent implements OnInit {
     );
 
     this.offersService.postOffer(newOffer)
-      .subscribe(() => this.closeDialog());
+      .subscribe(() => {
+        this.sendNotification();
+        this.closeDialog()
+
+    });
   }
 
   closeDialog(): void {
@@ -85,5 +89,21 @@ export class DialogSelectProductComponent implements OnInit {
           data: { product_name: this.selectedProduct.product_name, user_name: this.data.user_name }
         })
     })
+  }
+
+  sendNotification(): void {
+    this.emailjsService.sendNotification(
+      'RECIBIDA',
+      this.data.user_name,
+      this.data.product_name,
+      this.data.user_email
+    ).subscribe({ 
+      next: (response) => {
+        console.log('Email enviado con éxito:', response);
+      },
+      error: (error) => {
+        console.error('Error al enviar el correo electrónico:', error);
+      }
+    });
   }
 }

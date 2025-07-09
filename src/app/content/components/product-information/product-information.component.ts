@@ -10,6 +10,9 @@ import { DialogFavoritesComponent } from '../../../public/components/dialog-favo
 import { DialogSelectProductComponent } from '../../../public/components/dialog-select-product/dialog-select-product.component';
 import { DialogLoginRegisterComponent } from '../../../public/components/dialog-login-register/dialog-login-register.component';
 import { DialogNoProductsComponent } from '../dialog-no-products/dialog-no-products.component';
+import { MatIconModule } from '@angular/material/icon';
+import { Clipboard } from '@angular/cdk/clipboard';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-information',
@@ -18,7 +21,9 @@ import { DialogNoProductsComponent } from '../dialog-no-products/dialog-no-produ
     CommonModule,
     MatCardModule,
     MatButtonModule,
-    RouterLink
+    RouterLink,
+    MatIconModule,
+    
   ],
   templateUrl: './product-information.component.html',
   styleUrls: ['./product-information.component.css']
@@ -33,7 +38,8 @@ export class ProductInformationComponent implements OnInit {
     private route: ActivatedRoute,
     private postsService: PostsService,
     private usersService: UsersService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private clipboard: Clipboard
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +53,30 @@ export class ProductInformationComponent implements OnInit {
       });
     }
   }
+
+  copyLink(userId: number) {
+    const url = window.location.href;
+    this.clipboard.copy(url);
+    this.message()
+  }
+
+  message() {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Enlace del producto copiado"
+      });
+    }
 
   loadCategories(): void {
     this.postsService.getCategoryProductById(this.product.category_id)
@@ -88,7 +118,8 @@ export class ProductInformationComponent implements OnInit {
               product_id: this.product.id,
               user_id: this.user.id,
               product_name: this.product.product_name,
-              user_name: this.user.name
+              user_name: this.user.name,
+              user_email: this.user.username,
             },
             width: '100rem'
           });
