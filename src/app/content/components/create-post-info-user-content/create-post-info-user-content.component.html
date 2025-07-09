@@ -48,7 +48,7 @@
 
     <span class="box-policy">
       <mat-checkbox [formControl]="acceptPolicy"></mat-checkbox>
-      <mat-label>Acepto la <a routerLink="/privacy-policy">Politica de Privacidad</a></mat-label>
+      <mat-label>Acepto la <a routerLink="/privacy-policy" target="_blank">Politica de Privacidad</a></mat-label>
     </span>
     <div>
       <span *ngIf="acceptPolicy.invalid && acceptPolicy.touched">
