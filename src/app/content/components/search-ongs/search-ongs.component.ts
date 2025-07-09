@@ -4,7 +4,6 @@ import {MatIcon} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import {NgForOf, NgIf} from "@angular/common";
-import {MatButton} from "@angular/material/button";
 import {OngsService} from "../../service/ongs/ongs.service";
 import {Ongs} from "../../model/ongs/ongs.model";
 import {RouterLink} from "@angular/router";
@@ -18,7 +17,6 @@ import {RouterLink} from "@angular/router";
     MatInputModule,
     MatCardModule,
     NgForOf,
-    MatButton,
     NgIf,
     RouterLink
   ],

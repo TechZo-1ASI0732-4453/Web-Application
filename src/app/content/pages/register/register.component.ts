@@ -4,14 +4,11 @@ import {FooterContent2Component} from "../../../public/footer-content-2/footer-c
 import {MatFormField, MatLabel, MatSuffix} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
-import {RouterLinkActive} from "@angular/router";
 import {DialogRegisterSuccessfullyComponent} from "../../components/dialog-register-successfully/dialog-register-successfully.component";
 import {MatDialog} from "@angular/material/dialog";
 import { FormBuilder, Validators } from '@angular/forms';
 import { CustomValidators } from '../../service/validators/validators.service';
 import {NgClass, NgIf} from "@angular/common";
-import {MatIcon} from "@angular/material/icon";
-import {MatInput} from "@angular/material/input";
 import { UsersService } from "../../service/users/users.service";
 import {AuthGoogleService} from "../../service/auth-google/auth-google.service";
 import { RecaptchaModule } from 'ng-recaptcha';
@@ -158,6 +155,8 @@ export class RegisterComponent {
     }
 
     if (this.registerForm.valid) {
+
+
       const newUser = {
         username: this.registerForm.value.email,
         password: this.registerForm.value.contrasenia,
@@ -179,9 +178,18 @@ export class RegisterComponent {
           console.error('Error registering user:', err);
         }
       });
+
+
     } else {
       this.submitted = true;
     }
   }
+
+
+  //funcition to confirm acuerdos saas in english
+  ConfirmSaas() {
+
+  }
+
 
 }
