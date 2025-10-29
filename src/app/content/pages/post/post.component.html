@@ -1,9 +1,25 @@
+<!-- src/app/pages/post/post.component.html -->
 <div class="container">
   <section><h1>Publicar Productos</h1></section>
+
   <div class="container-create-post">
     <div class="section-1">
-      <app-create-post-info-user-content class="section-info-contact" ></app-create-post-info-user-content>
-      <button class="button-submit btn-desk" mat-stroked-button (click)="onPost()" [disabled]="loading">
+      <app-create-post-info-user-content class="section-info-contact"></app-create-post-info-user-content>
+
+      <!-- NUEVO: Botón IA (encima de Publicar) -->
+      <button class="button-submit btn-desk"
+              mat-stroked-button
+              (click)="onAnalyzeImage()"
+              [disabled]="loading || aiLoading">
+        <div *ngIf="!aiLoading">Analizar foto con IA</div>
+        <mat-spinner *ngIf="aiLoading" diameter="20" style="margin-left: 8px;"></mat-spinner>
+      </button>
+
+      <!-- Botón Publicar -->
+      <button class="button-submit btn-desk"
+              mat-stroked-button
+              (click)="onPost()"
+              [disabled]="loading">
         <div *ngIf="!loading">Publicar</div>
         <mat-spinner *ngIf="loading" diameter="20" style="margin-left: 8px;"></mat-spinner>
       </button>
@@ -12,8 +28,20 @@
     <app-create-info-post-content class="section-info-post"></app-create-info-post-content>
   </div>
 
-  <button class="button-submit btn-res" mat-stroked-button (click)="onPost()" [disabled]="loading">
-   <div *ngIf="!loading">Publicar</div>
-   <mat-spinner *ngIf="loading" diameter="20" style="margin-left: 8px;"></mat-spinner>
+  <!-- Responsive -->
+  <button class="button-submit btn-res"
+          mat-stroked-button
+          (click)="onAnalyzeImage()"
+          [disabled]="loading || aiLoading">
+    <div *ngIf="!aiLoading">Analizar foto con IA</div>
+    <mat-spinner *ngIf="aiLoading" diameter="20" style="margin-left: 8px;"></mat-spinner>
+  </button>
+
+  <button class="button-submit btn-res"
+          mat-stroked-button
+          (click)="onPost()"
+          [disabled]="loading">
+    <div *ngIf="!loading">Publicar</div>
+    <mat-spinner *ngIf="loading" diameter="20" style="margin-left: 8px;"></mat-spinner>
   </button>
 </div>
