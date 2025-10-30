@@ -10,6 +10,10 @@ import {DialogLimitReachedComponent} from "../../components/dialog-limit-reached
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
 import { DialogErrorComponent } from '../../../public/components/dialog-error/dialog-error.component';
+
+import {AiService} from "../../service/ai/ai.service";
+import {ProductSuggestionDto} from "../../../model/ai/product-suggestion.dto";
+
 @Component({
   selector: 'app-post',
   standalone: true,
@@ -31,11 +35,56 @@ export class PostComponent {
   imageDefault = 'https://media.istockphoto.com/id/1472933890/es/vector/no-hay-s%C3%ADmbolo-vectorial-de-imagen-falta-el-icono-disponible-no-hay-galer%C3%ADa-para-este.jpg';
   loading = false;
 
+  aiLoading = false;
+  aiSuggestion: ProductSuggestionDto | null = null;
+
   constructor(
     private productsService: PostsService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private aiService: AiService,
   ) {  }
+
+  // Botón: Analizar foto con IA
+  onAnalyzeImage(forceOverride = false): void {
+    const userId = parseInt(localStorage.getItem('id') || '-1', 10);
+    if (!userId || userId < 0) {
+      this.dialog.open(DialogErrorComponent, {
+        data: { title: 'Sesión inválida', message: 'No se pudo leer el usuario (localStorage.id).' },
+        disableClose: true
+      });
+      return;
+    }
+
+    // el hijo debe exponer el file actual
+    const file = this.createInfoPostContentComponent?.getSelectedFile?.();
+    if (!file) {
+      this.dialog.open(DialogErrorComponent, {
+        data: { title: 'Imagen requerida', message: 'Primero selecciona una imagen del producto.' },
+        disableClose: true
+      });
+      return;
+    }
+
+    this.aiLoading = true;
+    this.aiService.suggestFromImage(userId, file).subscribe({
+      next: (dto) => {
+        this.aiSuggestion = dto ?? null;
+        // aplicar al form del hijo (rellena campos vacíos, o fuerza si forceOverride)
+        this.createInfoPostContentComponent.applyAiSuggestion(dto, forceOverride);
+        this.aiLoading = false;
+      },
+      error: (err) => {
+        this.aiLoading = false;
+        const title = err?.status === 403 ? 'La imagen no cumple políticas' : 'No se pudo analizar la imagen';
+        const message = (err?.message || 'Inténtalo nuevamente').toString();
+        this.dialog.open(DialogErrorComponent, {
+          data: { title, message },
+          disableClose: true
+        });
+      }
+    });
+  }
 
   onPost(): void {
   const infoProduct = this.createInfoPostContentComponent.onSubmit();
