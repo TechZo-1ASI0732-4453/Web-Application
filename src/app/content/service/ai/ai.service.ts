@@ -20,7 +20,7 @@ export class AiService {
 
     // 👇 CLAVE: enviar cookies/sesión como lo hacen tus otros servicios
     return this.http
-      .post<ProductSuggestionDto>(`${this.base}/exchanges/ai/suggest`, form, {
+      .post<ProductSuggestionDto>(`${this.base}/api/v2/exchanges/ai/suggest`, form, {
         params,
         withCredentials: true, // <— esto faltaba en tu implementación
       })
