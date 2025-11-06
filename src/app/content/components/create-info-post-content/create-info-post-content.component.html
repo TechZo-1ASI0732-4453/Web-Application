@@ -4,48 +4,69 @@
 
     <mat-label>Categorias</mat-label>
     <select formControlName="category_id">
-      <option  [ngValue]="null" [hidden]="!formProduct.value.category_id" selected>{{!formProduct.value.category_id ? '' : '..'}}</option>
-      <option  *ngFor="let category of this.categories" [ngValue]='category.id'>{{ category.name }}</option>
+      <option [ngValue]="null" [hidden]="!formProduct.value.category_id" selected>
+        {{ !formProduct.value.category_id ? '' : '..' }}
+      </option>
+      <option *ngFor="let category of this.categories" [ngValue]="category.id">
+        {{ category.name }}
+      </option>
     </select>
-    <div>
+    <div class="err-msg">
       <span *ngIf="formProduct.get('category_id')?.invalid && formProduct.get('category_id')?.touched">
         *Seleccion requerida
       </span>
     </div>
 
     <mat-label>Producto</mat-label>
-    <input matInput formControlName="product_name" >
-    <div>
-      <span  *ngIf="formProduct.get('product_name')?.invalid && formProduct.get('product_name')?.touched">
-      *Seleccion requerida
-      </span>
-    </div>
-    <mat-label  >Describe tu producto</mat-label>
-    <textarea  formControlName="description"></textarea>
-    <div>
-      <span *ngIf="formProduct.get('description')?.invalid && formProduct.get('description')?.touched">
-      *Seleccion requerida
-      </span>
-    </div>
-    <mat-label>¿Que quieres a Cambio?</mat-label>
-    <textarea  formControlName="change_for"></textarea>
-    <div>
-      <span *ngIf="formProduct.get('change_for')?.invalid && formProduct.get('change_for')?.touched">
-      *Seleccion requerida
+    <input matInput formControlName="product_name" />
+    <div class="err-msg">
+      <span *ngIf="formProduct.get('product_name')?.invalid && formProduct.get('product_name')?.touched">
+        *Seleccion requerida
       </span>
     </div>
 
-    <mat-label >Valor Aproximado</mat-label>
-    <span class="box-input-price">
-        <div style="  border-radius: 5px 0 0 5px;
-width: 2rem; font-size:16px; background: #FFD146;display:flex;height: inherit;justify-content: center;align-items:center;color:black; font-weight: bolder">S/.</div>
-        <input style="width: 100%" formControlName="price" type="number" (beforeinput)="validateInput($event)">
-    </span>
-    <div>
-      <span *ngIf="formProduct.get('price')?.invalid && formProduct.get('price')?.touched">
-      *Seleccion requerida
+    <mat-label>Describe tu producto</mat-label>
+    <textarea formControlName="description"></textarea>
+    <div class="err-msg">
+      <span *ngIf="formProduct.get('description')?.invalid && formProduct.get('description')?.touched">
+        *Seleccion requerida
       </span>
     </div>
+
+    <mat-label>¿Que quieres a Cambio?</mat-label>
+    <textarea formControlName="change_for"></textarea>
+    <div class="err-msg">
+      <span *ngIf="formProduct.get('change_for')?.invalid && formProduct.get('change_for')?.touched">
+        *Seleccion requerida
+      </span>
+    </div>
+
+    <mat-label>Valor Aproximado</mat-label>
+    <span class="box-input-price">
+      <div style="border-radius: 5px 0 0 5px; width: 2rem; font-size:16px; background: #FFD146; display:flex; height: inherit; justify-content: center; align-items:center; color:black; font-weight: bolder">S/.</div>
+      <input style="width: 100%" formControlName="price" type="number" (beforeinput)="validateInput($event)" />
+    </span>
+    <div class="err-msg">
+      <span *ngIf="formProduct.get('price')?.invalid && formProduct.get('price')?.touched">
+        *Seleccion requerida
+      </span>
+    </div>
+
+    <!-- ============================ -->
+    <!-- SUGERENCIAS IA (misma UX que un campo) -->
+    <!-- ============================ -->
+    <ng-container *ngIf="!aiLoading && aiSuggestion && (aiSuggestion.suggest || (aiSuggestion.score !== null && aiSuggestion.score !== undefined))">
+      <mat-label>Sugerencias de la foto (IA)</mat-label>
+      <div class="ai-field">
+        <div class="ai-line" *ngIf="aiSuggestion.suggest as s">
+          <b>Recomendación:</b> {{ s }}
+        </div>
+        <div class="ai-score" *ngIf="aiSuggestion.score !== null && aiSuggestion.score !== undefined">
+          <b>Puntaje:</b> {{ aiSuggestion.score }}/10
+        </div>
+      </div>
+    </ng-container>
+    <!-- /SUGERENCIAS IA -->
   </section>
 </form>
 
@@ -54,11 +75,7 @@ width: 2rem; font-size:16px; background: #FFD146;display:flex;height: inherit;ju
   <p>{{ files.length }} / 1 Imagen subida</p>
 
   <div class="custom-dropzone">
-    <ngx-dropzone
-      accept="image/*"
-      (change)="onSelect($event)"
-      [disableClick]="files.length >= 1"
-    >
+    <ngx-dropzone accept="image/*" (change)="onSelect($event)" [disableClick]="files.length >= 1">
       <ngx-dropzone-label *ngIf="!files.length">Subir imagen</ngx-dropzone-label>
 
       <ngx-dropzone-image-preview
@@ -67,8 +84,8 @@ width: 2rem; font-size:16px; background: #FFD146;display:flex;height: inherit;ju
         [file]="f"
         [removable]="true"
         (removed)="onRemove(f)"
-        class="box-image"
-      ></ngx-dropzone-image-preview>
+        class="box-image">
+      </ngx-dropzone-image-preview>
     </ngx-dropzone>
   </div>
 </section>
