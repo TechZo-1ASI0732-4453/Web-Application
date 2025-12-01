@@ -1,9 +1,3 @@
-<div class="exchanges__title">
-  <p>Intercambios Completados con Éxito:</p>
-</div>
-<div class="line-text">
-  <div class="line"></div>
-</div>
 <div class="complete__container">
   <ng-container *ngFor="let sent of this.offers.reverse(); let j = index">
     <mat-card *ngIf="sent.status == 'Aceptado'" class="example-card">
@@ -19,6 +13,10 @@
         </div>
       </div>
       <div class="review__info">
+
+        <button class="chat__button" (click)="openChat(sent.userChange,sent.id )">
+          <mat-icon>chat</mat-icon> Chat
+        </button>
         <p class="question">¿Quieres puntuar la comunicación con {{ sent.userChange.name }}?</p>
         <div class="qualification">
           <p class="point">Puntuación:</p>

@@ -1,0 +1,176 @@
+.container {
+  position: relative;
+  padding: 2rem 1rem 1rem;
+  background: #f5f1e9;
+  font-family: 'Montserrat', sans-serif;
+  height: 90vh;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Botón cerrar */
+.button-close {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+
+.button-close:hover {
+  transform: scale(1.2);
+}
+
+/* Cabecera */
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.user-image {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.user-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Tarjeta blanca del chat */
+.chat-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+
+  /* 👇 que ocupe todo lo que queda bajo el header */
+  flex: 1;
+  min-height: 0;  /* necesario para que el hijo pueda hacer scroll */
+}
+
+/* Contenedor de mensajes: flex en columna y con scroll */
+.dialog-content {
+  flex: 1;
+  min-height: 0;          /* 👈 clave para que flex permita scroll */
+  overflow-y: auto;
+  padding: 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mensajes */
+.message {
+  max-width: 60%;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+/* Mensajes que llegan (gris, izquierda) */
+.message-in {
+  align-self: flex-start;
+  background: #e6e6e6;
+  border-radius: 16px 16px 16px 4px;
+}
+
+/* Mensajes míos (amarillo, derecha) */
+.message-out {
+  align-self: flex-end;
+  background: #ffd447;
+  border-radius: 16px 16px 4px 16px;
+}
+
+/* Imagen dentro del mensaje (mapa) */
+.message img {
+  display: block;
+  max-width: 260px;
+  border-radius: 16px;
+}
+
+/* Barra de entrada de mensaje */
+.dialog-actions {
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.input-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input-bar input {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  padding: 0.7rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.input-bar input:focus {
+  border-color: #ffd447;
+}
+
+/* Botón enviar */
+.send-btn {
+  border: none;
+  background: transparent;
+}
+
+/* Botón ojo amarillo */
+.eye-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #ffd447;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .user-name {
+    font-size: 1.6rem;
+  }
+
+  .chat-card {
+    padding: 1.2rem;
+  }
+
+  .message {
+    max-width: 80%;
+  }
+}

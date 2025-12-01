@@ -132,7 +132,7 @@ mat-card-footer{
   display: none;
 }
 @media screen and (max-width: 1150px) {
-  .title-posts {
+  .posts__first {
     padding-top: 2rem;
     padding-left: 1rem;
   }

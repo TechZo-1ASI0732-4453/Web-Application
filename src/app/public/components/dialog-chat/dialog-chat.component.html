@@ -1,0 +1,50 @@
+<div class="container">
+  <!-- Botón cerrar -->
+  <button class="button-close" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <!-- Cabecera con foto + nombre -->
+  <div class="dialog-header" mat-dialog-title>
+    <div class="user-image">
+      <img [src]="data.profilePicture" alt="User Image" />
+    </div>
+    <h1 class="user-name">{{ data.name }}</h1>
+  </div>
+
+  <!-- Tarjeta blanca del chat -->
+  <div class="chat-card">
+    <!-- Mensajes -->
+    <div class="dialog-content" mat-dialog-content #messagesContainer>
+      <div
+        class="message"
+        *ngFor="let msg of messages"
+        [ngClass]="{ 'message-out': msg.fromMe, 'message-in': !msg.fromMe }"
+      >
+        <p *ngIf="msg.text">{{ msg.text }}</p>
+        <img *ngIf="msg.imageUrl" [src]="msg.imageUrl" alt="message image" />
+      </div>
+    </div>
+
+
+    <!-- Barra de escribir mensaje -->
+    <div class="dialog-actions" mat-dialog-actions>
+      <div class="input-bar">
+        <input
+          type="text"
+          placeholder="Escribe un mensaje"
+          [(ngModel)]="newMessage"
+          (keyup.enter)="sendMessage()"
+        />
+
+        <button class="send-btn" mat-icon-button (click)="sendMessage()">
+          <mat-icon>send</mat-icon>
+        </button>
+
+        <button class="eye-btn" mat-icon-button>
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

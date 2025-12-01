@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule} from "@angular/material/icon";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
@@ -11,6 +11,11 @@ import {ReviewsService} from "../../service/reviews/reviews.service";
 import { ReactiveFormsModule} from "@angular/forms";
 import {FormsModule} from "@angular/forms";
 import {DialogEditPostComponent} from "../../../public/components/dialog-edit-post/dialog-edit-post.component";
+import {
+  DialogSuccessfulExchangeComponent
+} from "../../../public/components/dialog-successful-exchange/dialog-successful-exchange.component";
+import {DialogChatComponent} from "../../../public/components/dialog-chat/dialog-chat.component";
+import {EmailjsService} from "../../service/emailjs/emailjs.service";
 
 
 @Component({
@@ -32,6 +37,7 @@ import {DialogEditPostComponent} from "../../../public/components/dialog-edit-po
   styleUrl: './complete-exchanges.component.css'
 })
 export class CompleteExchangesComponent implements OnInit{
+  @Output() checkEmpty = new EventEmitter<boolean>();
 
   userId: number = Number(localStorage.getItem('id'));
   offers: any[] = [];
@@ -43,7 +49,7 @@ export class CompleteExchangesComponent implements OnInit{
 
   inputs: any[] = [];
 
-  constructor(private dialogReviewPost: MatDialog,private offersService:OffersService, private reviewService:ReviewsService) {}
+  constructor(private dialog: MatDialog, private dialogReviewPost: MatDialog,private offersService:OffersService, private reviewService:ReviewsService) {}
 
 
   ngOnInit() {
@@ -112,6 +118,38 @@ export class CompleteExchangesComponent implements OnInit{
       .subscribe(() => {
         this.dialogReviewPost.open(DialogEditPostComponent, { disableClose: true });
       });
+  }
+
+
+  openChat(user: any, exchangeId: number) {
+    const chatId = exchangeId;
+
+    if (user) {
+      this.dialog.open(DialogChatComponent, {
+        data: {
+          name: user.name,
+          profilePicture: user.profilePicture,
+          width: '900px',
+          height: '90vh',     // 👈 altura fija del dialog
+        },
+        disableClose: true
+      });
+    }
+
+    /*
+        this.offersService.updateOfferStatus(offer.id.toString(), 'Aceptado').subscribe(() => {
+
+          if (user) {
+            this.dialog.open(DialogChatComponent, {
+              data: {
+                name: user.name,
+                profilePicture: user.profilePicture,
+              },
+              disableClose: true
+            });
+          }
+        });
+      */
   }
 
 }

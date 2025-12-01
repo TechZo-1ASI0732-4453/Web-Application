@@ -33,6 +33,7 @@ import { EditPostComponent } from "./content/pages/edit-post/edit-post.component
 import {CompleteExchangesComponent} from "./content/components/complete-exchanges/complete-exchanges.component";
 import {PublisherProfileDetailsComponent} from "./content/pages/publisher-profile-details/publisher-profile-details.component";
 import {authGuard} from "./guards/auth.guard";
+import {ExchangesComponent} from "./content/components/exchanges/exchanges.component";
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -52,8 +53,8 @@ export const routes: Routes = [
       { path: '', redirectTo: 'my-posts', pathMatch: 'full' },
       { path: 'my-posts', component: MyPostsComponent },
       { path: 'offers', component: UserOffersComponent },
-      { path: 'complete-changes', component: CompleteExchangesComponent },
-      { path: 'favourites', component: MyFavoritesComponent },
+      { path: 'exchanges', component: ExchangesComponent },
+      { path: 'favorites', component: MyFavoritesComponent },
       { path: 'reviews', component: MyReviewsComponent },
     ]
   },
