@@ -11,45 +11,68 @@
   display: flex;
   flex-direction: column;
 }
-.button-close {
-  position: absolute;
-  right: 1.5rem;
-  top: 1.5rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  z-index: 10;
-}
-.button-close:hover {
-  transform: scale(1.2);
-}
 .dialog-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
   margin-bottom: 1rem;
+  padding: 0.5rem 0.25rem 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 .user-image {
   flex-shrink: 0;
-  width: 45px;
-  height: 45px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   overflow: hidden;
+  background: #ddd;
 }
 .user-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+.user-text {
+  display: flex;
+  flex-direction: column;
+}
 .user-name {
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 600;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: calc(100% - 80px);
+  max-width: 180px;
+}
+.user-subtitle {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #888888;
+}
+.button-close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.button-close mat-icon {
+  font-size: 20px;
+}
+.button-close:hover {
+  background: rgba(0, 0, 0, 0.04);
+  transform: scale(1.05);
 }
 .chat-card {
   background: #ffffff;
@@ -96,22 +119,31 @@
   padding-top: 0.8rem;
   border-top: 1px solid #eee;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .input-bar {
-  width: 100%;
+  flex: 1;
+  max-width: 100%;
   display: flex;
   align-items: center;
   background: #f5f5f5;
   border-radius: 999px;
   padding: 0.35rem 0.5rem;
   box-sizing: border-box;
+  gap: 0.35rem;
+  overflow: hidden;
 }
 .input-bar input {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
   border: none;
   background: transparent;
   font-family: inherit;
   outline: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .input-bar input::placeholder {
   color: #b0b0b0;
@@ -190,19 +222,29 @@
 
 @media (max-width: 850px) {
   .container {
-    padding: 0.75rem;
+    padding: 1.25rem 0.75rem;
   }
   .dialog-header {
-    gap: 6px;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
+    padding: 0.4rem 0.1rem 0.6rem;
   }
   .user-image {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
   .user-name {
     font-size: 0.9rem;
-    max-width: 70%;
+    max-width: 130px;
+  }
+  .user-subtitle {
+    font-size: 0.7rem;
+  }
+  .button-close {
+    width: 28px;
+    height: 28px;
+  }
+  .button-close mat-icon {
+    font-size: 18px;
   }
   .chat-card {
     padding: 0.75rem;
@@ -219,19 +261,17 @@
   }
   .dialog-actions {
     padding-top: 0.6rem;
+    display: flex;
+    justify-content: center;
   }
   .input-bar {
+    flex: 1;
+    max-width: 100%;
     padding: 0.3rem 0.4rem;
-    gap: 0.35rem;
+    gap: 0.25rem;
   }
   .input-bar input {
-    font-size: 0.85rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .input-bar input::placeholder {
-    color: #b0b0b0;
+    font-size: 0.7rem;
   }
   .send-btn,
   .eye-btn {
@@ -240,6 +280,6 @@
   }
   .send-btn mat-icon,
   .eye-btn mat-icon {
-    font-size: 18px;
+    font-size: 20px;
   }
 }

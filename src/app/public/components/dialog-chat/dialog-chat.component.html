@@ -1,14 +1,22 @@
 <div class="container">
-  <button class="button-close" mat-dialog-close>
-    <mat-icon>close</mat-icon>
-  </button>
-
   <div class="dialog-header">
-    <div class="user-image">
-      <img [src]="data.profilePicture" alt="User Image" />
+    <div class="user-info">
+      <div class="user-image">
+        <img [src]="data.profilePicture" alt="User Image" />
+      </div>
+
+      <div class="user-text">
+        <h1 class="user-name">{{ data.name }}</h1>
+        <p class="user-subtitle">Disponible para chatear</p>
+      </div>
     </div>
-    <h1 class="user-name">{{ data.name }}</h1>
+
+    <button class="button-close" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
+
+
 
   <div class="chat-card">
     <div class="dialog-content" mat-dialog-content #messagesContainer>
