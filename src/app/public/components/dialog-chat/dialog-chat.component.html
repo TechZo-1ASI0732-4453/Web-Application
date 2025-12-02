@@ -1,33 +1,48 @@
 <div class="container">
-  <!-- Botón cerrar -->
   <button class="button-close" mat-dialog-close>
     <mat-icon>close</mat-icon>
   </button>
 
-  <!-- Cabecera con foto + nombre -->
-  <div class="dialog-header" mat-dialog-title>
+  <div class="dialog-header">
     <div class="user-image">
       <img [src]="data.profilePicture" alt="User Image" />
     </div>
     <h1 class="user-name">{{ data.name }}</h1>
   </div>
 
-  <!-- Tarjeta blanca del chat -->
   <div class="chat-card">
-    <!-- Mensajes -->
     <div class="dialog-content" mat-dialog-content #messagesContainer>
       <div
         class="message"
         *ngFor="let msg of messages"
-        [ngClass]="{ 'message-out': msg.fromMe, 'message-in': !msg.fromMe }"
+        [ngClass]="{
+    'message-out': msg.fromMe,
+    'message-in': !msg.fromMe,
+    'message-location': msg.isLocation
+  }"
       >
-        <p *ngIf="msg.text">{{ msg.text }}</p>
-        <img *ngIf="msg.imageUrl" [src]="msg.imageUrl" alt="message image" />
+        <ng-container *ngIf="msg.isLocation; else textMessage">
+          <div
+            class="location-message"
+            [ngClass]="{ 'location-out': msg.fromMe, 'location-in': !msg.fromMe }"
+            (click)="openMaps(msg.mapsLink, $event)"
+          >
+            <img
+              class="location-map"
+              [src]="msg.imageUrl"
+              alt="Mapa de ubicación"
+            />
+          </div>
+        </ng-container>
+
+        <ng-template #textMessage>
+          <p *ngIf="msg.text">{{ msg.text }}</p>
+          <img *ngIf="msg.imageUrl && !msg.isLocation" [src]="msg.imageUrl" alt="message image" />
+        </ng-template>
       </div>
+
     </div>
 
-
-    <!-- Barra de escribir mensaje -->
     <div class="dialog-actions" mat-dialog-actions>
       <div class="input-bar">
         <input
@@ -36,15 +51,16 @@
           [(ngModel)]="newMessage"
           (keyup.enter)="sendMessage()"
         />
-
         <button class="send-btn" mat-icon-button (click)="sendMessage()">
           <mat-icon>send</mat-icon>
         </button>
-
-        <button class="eye-btn" mat-icon-button>
-          <mat-icon>visibility</mat-icon>
+        <button class="eye-btn" mat-icon-button (click)="sendLocation()">
+          <mat-icon>location_on</mat-icon>
         </button>
+
       </div>
     </div>
+
+
   </div>
 </div>

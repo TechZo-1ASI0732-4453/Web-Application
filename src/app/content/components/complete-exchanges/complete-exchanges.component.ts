@@ -6,17 +6,12 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialog} from "@angular/material/dialog";
 import {OffersService} from "../../service/offers/offers.service";
-
 import {ReviewsService} from "../../service/reviews/reviews.service";
 import { ReactiveFormsModule} from "@angular/forms";
 import {FormsModule} from "@angular/forms";
 import {DialogEditPostComponent} from "../../../public/components/dialog-edit-post/dialog-edit-post.component";
-import {
-  DialogSuccessfulExchangeComponent
-} from "../../../public/components/dialog-successful-exchange/dialog-successful-exchange.component";
 import {DialogChatComponent} from "../../../public/components/dialog-chat/dialog-chat.component";
-import {EmailjsService} from "../../service/emailjs/emailjs.service";
-
+import {ChatService} from "../../service/chat/chat.service";
 
 @Component({
   selector: 'app-complete-exchanges',
@@ -46,17 +41,20 @@ export class CompleteExchangesComponent implements OnInit{
   selectedStar:number[]=[];
   maxRatingArr:any=[];
   previousSelection:number[]=[];
-
   inputs: any[] = [];
 
-  constructor(private dialog: MatDialog, private dialogReviewPost: MatDialog,private offersService:OffersService, private reviewService:ReviewsService) {}
-
+  constructor(
+    private dialog: MatDialog,
+    private dialogReviewPost: MatDialog,
+    private offersService:OffersService,
+    private reviewService:ReviewsService,
+    private chatService: ChatService
+  ) {}
 
   ngOnInit() {
     this.maxRatingArr=Array(this.maxRating).fill(0);
     this.getFinishedOffers();
   }
-
 
   getFinishedOffers() {
     if (!this.userId) return;
@@ -64,9 +62,7 @@ export class CompleteExchangesComponent implements OnInit{
       this.offers = data;
 
       this.offers.forEach((offer) => {
-
         if(offer.userOwn.id !== this.userId) {
-
           const temP = offer.productOwn;
           offer.productOwn = offer.productChange;
           offer.productChange = temP;
@@ -76,9 +72,10 @@ export class CompleteExchangesComponent implements OnInit{
           offer.userChange = temU;
         }
 
-      this.reviewService.getReviewByAuthorAndExchange(this.userId.toString(),offer.id).subscribe((res) => {
-        offer.reviewExisted = res.existReview;
-      });
+        this.reviewService.getReviewByAuthorAndExchange(this.userId.toString(),offer.id)
+          .subscribe((res) => {
+            offer.reviewExisted = res.existReview;
+          });
       });
     });
   }
@@ -90,7 +87,7 @@ export class CompleteExchangesComponent implements OnInit{
   HandleMouseLeave(indexOffer:number){
     if(this.previousSelection[indexOffer]!==0) {
       this.selectedStar[indexOffer] = this.previousSelection[indexOffer];
-    }else {
+    } else {
       this.selectedStar[indexOffer]=0;
     }
   }
@@ -120,36 +117,28 @@ export class CompleteExchangesComponent implements OnInit{
       });
   }
 
-
   openChat(user: any, exchangeId: number) {
-    const chatId = exchangeId;
+    if (!user) return;
 
-    if (user) {
-      this.dialog.open(DialogChatComponent, {
-        data: {
-          name: user.name,
-          profilePicture: user.profilePicture,
-          width: '900px',
-          height: '90vh',     // 👈 altura fija del dialog
-        },
-        disableClose: true
-      });
-    }
+    const conversationId = exchangeId.toString();
 
-    /*
-        this.offersService.updateOfferStatus(offer.id.toString(), 'Aceptado').subscribe(() => {
-
-          if (user) {
-            this.dialog.open(DialogChatComponent, {
-              data: {
-                name: user.name,
-                profilePicture: user.profilePicture,
-              },
-              disableClose: true
-            });
-          }
+    this.chatService
+      .openConversation(conversationId, exchangeId.toString())
+      .subscribe(() => {
+        this.dialog.open(DialogChatComponent, {
+          data: {
+            name: user.name,
+            profilePicture: user.profilePicture,
+            myUserId: this.userId,
+            peerId: user.id,
+            conversationId: conversationId,
+            exchangeId: exchangeId
+          },
+          width: '500px',
+          height: '90vh',
+          disableClose: true
         });
-      */
+      });
   }
 
 }

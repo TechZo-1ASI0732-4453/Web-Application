@@ -1,17 +1,16 @@
+.message p {
+  margin: 0;
+}
 .container {
   position: relative;
-  padding: 2rem 1rem 1rem;
-  background: #f5f1e9;
+  padding: 2rem 2rem 2rem;
+  background: #EFEFEF;
   font-family: 'Montserrat', sans-serif;
   height: 90vh;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
 }
-
-
-/* Botón cerrar */
 .button-close {
   position: absolute;
   right: 1.5rem;
@@ -22,65 +21,54 @@
   transition: transform 0.2s ease;
   z-index: 10;
 }
-
-
 .button-close:hover {
   transform: scale(1.2);
 }
-
-/* Cabecera */
 .dialog-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: 10px;
+  margin-bottom: 1rem;
 }
-
 .user-image {
   flex-shrink: 0;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   overflow: hidden;
 }
-
 .user-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .user-name {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 500;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 80px);
 }
-
-/* Tarjeta blanca del chat */
 .chat-card {
   background: #ffffff;
-  border-radius: 24px;
-  padding: 2rem;
+  border-radius: 10px;
+  padding: 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-
-  /* 👇 que ocupe todo lo que queda bajo el header */
   flex: 1;
-  min-height: 0;  /* necesario para que el hijo pueda hacer scroll */
+  min-height: 0;
 }
-
-/* Contenedor de mensajes: flex en columna y con scroll */
 .dialog-content {
   flex: 1;
-  min-height: 0;          /* 👈 clave para que flex permita scroll */
+  min-height: 0;
   overflow-y: auto;
   padding: 0 0;
   display: flex;
   flex-direction: column;
 }
-
-/* Mensajes */
 .message {
   max-width: 60%;
   padding: 0.75rem 1rem;
@@ -89,88 +77,169 @@
   line-height: 1.4;
   margin-bottom: 1rem;
 }
-
-/* Mensajes que llegan (gris, izquierda) */
 .message-in {
   align-self: flex-start;
   background: #e6e6e6;
   border-radius: 16px 16px 16px 4px;
 }
-
-/* Mensajes míos (amarillo, derecha) */
 .message-out {
   align-self: flex-end;
   background: #ffd447;
   border-radius: 16px 16px 4px 16px;
 }
-
-/* Imagen dentro del mensaje (mapa) */
 .message img {
   display: block;
   max-width: 260px;
   border-radius: 16px;
 }
-
-/* Barra de entrada de mensaje */
 .dialog-actions {
-  margin-top: 0.5rem;
-  padding-top: 1rem;
+  padding-top: 0.8rem;
   border-top: 1px solid #eee;
+  width: 100%;
 }
-
 .input-bar {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  background: #f5f5f5;
+  border-radius: 999px;
+  padding: 0.35rem 0.5rem;
+  box-sizing: border-box;
 }
-
 .input-bar input {
   flex: 1;
-  border-radius: 999px;
-  border: 1px solid #ddd;
-  padding: 0.7rem 1rem;
+  border: none;
+  background: transparent;
   font-family: inherit;
-  font-size: 0.95rem;
   outline: none;
 }
-
-.input-bar input:focus {
-  border-color: #ffd447;
+.input-bar input::placeholder {
+  color: #b0b0b0;
 }
-
-/* Botón enviar */
 .send-btn {
   border: none;
   background: transparent;
-}
-
-/* Botón ojo amarillo */
-.eye-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  background: #ffd447;
+  padding: 0;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+.send-btn mat-icon {
+  font-size: 22px;
+  color: #333333;
+  line-height: 1;
+}
+.eye-btn {
+  border: none;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  background: #ffd447;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
+  flex-shrink: 0;
+}
+.eye-btn mat-icon {
+  font-size: 22px;
+  color: #111111;
+  line-height: 1;
+  display: block;
+}
+.eye-btn:hover,
+.send-btn:hover {
+  filter: brightness(0.95);
+}
+.message-location {
+  padding: 0;
+  background: none;
+}
+.location-message {
+  border-radius: 14px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.location-out {
+  background: #ffd447;
+}
+.location-in {
+  background: #e6e6e6;
+}
+.location-map {
+  display: block;
+  width: 190px;
+  height: 120px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  object-fit: cover;
+  cursor: pointer;
+}
+.location-out .location-map {
+  border-color: #ffd54f;
+}
+.location-in .location-map {
+  border-color: #e6e6e6;
 }
 
-/* Responsive */
 @media (max-width: 850px) {
   .container {
-    padding: 1rem;
+    padding: 0.75rem;
   }
-
+  .dialog-header {
+    gap: 6px;
+    margin-bottom: 0.75rem;
+  }
+  .user-image {
+    width: 36px;
+    height: 36px;
+  }
   .user-name {
-    font-size: 1.6rem;
+    font-size: 0.9rem;
+    max-width: 70%;
   }
-
   .chat-card {
-    padding: 1.2rem;
+    padding: 0.75rem;
+    border-radius: 8px;
   }
-
   .message {
-    max-width: 80%;
+    max-width: 85%;
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+  .location-map {
+    width: 150px;
+    height: 95px;
+  }
+  .dialog-actions {
+    padding-top: 0.6rem;
+  }
+  .input-bar {
+    padding: 0.3rem 0.4rem;
+    gap: 0.35rem;
+  }
+  .input-bar input {
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .input-bar input::placeholder {
+    color: #b0b0b0;
+  }
+  .send-btn,
+  .eye-btn {
+    width: 28px;
+    height: 28px;
+  }
+  .send-btn mat-icon,
+  .eye-btn mat-icon {
+    font-size: 18px;
   }
 }

@@ -10,18 +10,3 @@
   <app-complete-exchanges></app-complete-exchanges>
 
 </div>
-
-<app-pending-exchanges
-  *ngIf="showSent"
-  (checkEmpty)="onPendingExchangesChecked($event)">
-</app-pending-exchanges>
-
-<app-complete-exchanges
-  *ngIf="!showSent"
-  (checkEmpty)="onCompletedExchangesChecked($event)">
-</app-complete-exchanges>
-
-<app-message-box-component
-  *ngIf="(showSent && pendingChecked && pendingExchangesEmpty) || (!showSent && completedChecked && completedExchangesEmpty)"
-  [message]="'No tiene intercambios ' + (showSent ? 'pendientes' : 'completados') + '.'">
-</app-message-box-component>
