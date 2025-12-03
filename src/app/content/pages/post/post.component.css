@@ -11,6 +11,102 @@ h1,.section-info-post,.section-info-contact,section{
   display: flex;
 }
 
+/* Estado gris del botón cuando hay ban */
+.greyed {
+  opacity: 0.6 !important;
+  pointer-events: none !important;
+  border-color: #9ca3af !important;
+  color: #9ca3af !important;
+}
+
+.ban-msg {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #9a3412; /* alerta */
+}
+
+/* ========================= */
+/* Overlay global de cargando */
+/* ========================= */
+.global-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  font-family: 'Montserrat', sans-serif; /* tipografía */
+}
+
+.global-loading__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25); /* un poco más suave */
+}
+
+.global-loading__card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 260px;
+  max-width: 86vw;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: #ffffff;                 /* tarjeta blanca */
+  box-shadow: 0 12px 40px rgba(0,0,0,.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #111827;                      /* texto oscuro */
+}
+
+.global-loading__spinner {
+  /* mat-spinner usa el color actual → lo forzamos a amarillo */
+  color: #FFD146 !important;
+}
+.global-loading__spinner * {
+  /* fallback para navegadores/temas: stroke amarillo */
+  stroke: #FFD146 !important;
+}
+
+.global-loading__title {
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+
+.global-loading__sub {
+  font-size: 12px;
+  color: #6b7280; /* gris */
+  text-align: center;
+}
+
+.section-1 > .ban-msg{
+  /* tipografía y look consistentes con el resto */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem !important;      /* mismo tamaño que tus mat-label */
+  color: #111827 !important;       /* texto oscuro como los inputs/labels */
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;       /* mismo borde que los inputs */
+  border-left: 6px solid #FFD146;  /* acento con tu color de marca */
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.03);
+  line-height: 1.35;
+  display: block;
+  height: auto;                    /* evita la altura fija de la regla genérica */
+}
+
+/* Resalta el tiempo y cualquier texto dentro de spans */
+.section-1 > .ban-msg span{
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Por si tu regla genérica de .section-1 div afectaba el layout del ban */
+.section-1 > .ban-msg{
+}
+
 section{
   background-color: #FFD146;
   height: 4rem;
@@ -73,7 +169,7 @@ section h1{
   }
 
   .btn-res{
-      display: flex;
+    display: flex;
   }
 
   .btn-desk{
