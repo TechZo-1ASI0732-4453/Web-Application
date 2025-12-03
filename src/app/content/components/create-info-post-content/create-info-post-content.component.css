@@ -1,191 +1,179 @@
-.container,button{
-  padding: 0 7rem 0 7rem;
-  font-family: 'montserrat', serif;
+.container, h1, mat-label, input, textarea, section, option {
+  font-family: 'Montserrat', sans-serif;
 }
 
-h1,.section-info-post,.section-info-contact,section{
-  font-family: inherit
-}
-
-.container-create-post{
-  display: flex;
-}
-
-/* Estado gris del botón cuando hay ban */
-.greyed {
-  opacity: 0.6 !important;
-  pointer-events: none !important;
-  border-color: #9ca3af !important;
-  color: #9ca3af !important;
-}
-
-.ban-msg {
-  margin-top: 8px;
-  font-size: 12px;
-  color: #9a3412; /* alerta */
-}
-
-/* ========================= */
-/* Overlay global de cargando */
-/* ========================= */
-.global-loading {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  font-family: 'Montserrat', sans-serif; /* tipografía */
-}
-
-.global-loading__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.25); /* un poco más suave */
-}
-
-.global-loading__card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 260px;
-  max-width: 86vw;
-  padding: 20px 24px;
-  border-radius: 16px;
-  background: #ffffff;                 /* tarjeta blanca */
-  box-shadow: 0 12px 40px rgba(0,0,0,.25);
+/* Tarjetas de la vista */
+.section-1, .section-2 {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: #111827;                      /* texto oscuro */
+  background-color: #ffffff;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.global-loading__spinner {
-  /* mat-spinner usa el color actual → lo forzamos a amarillo */
-  color: #FFD146 !important;
-}
-.global-loading__spinner * {
-  /* fallback para navegadores/temas: stroke amarillo */
-  stroke: #FFD146 !important;
-}
-
-.global-loading__title {
-  font-weight: 700;
-  font-size: 14px;
-  text-align: center;
-}
-
-.global-loading__sub {
-  font-size: 12px;
-  color: #6b7280; /* gris */
-  text-align: center;
-}
-
-.section-1 > .ban-msg{
-  /* tipografía y look consistentes con el resto */
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1rem !important;      /* mismo tamaño que tus mat-label */
-  color: #111827 !important;       /* texto oscuro como los inputs/labels */
-  background: #FFFFFF;
-  border: 1px solid #D1D5DB;       /* mismo borde que los inputs */
-  border-left: 6px solid #FFD146;  /* acento con tu color de marca */
-  border-radius: 6px;
+/* ===== Recuadro de Sugerencias IA (mismo look que un campo) ===== */
+.ai-field {
   padding: 12px 14px;
-  margin-top: 10px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.03);
-  line-height: 1.35;
-  display: block;
-  height: auto;                    /* evita la altura fija de la regla genérica */
-}
-
-/* Resalta el tiempo y cualquier texto dentro de spans */
-.section-1 > .ban-msg span{
-  font-weight: 600;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  background: #FFFFFF;
   color: #111827;
+  font-size: 16px;
+  line-height: 1.4;
+  box-shadow: 0 1px 2px rgba(0,0,0,.03);
+  margin-top: 6px; /* separación respecto al mat-label */
+}
+.ai-field, .ai-field * { color: #111827; } /* evita heredar rojo de errores */
+.ai-line { white-space: pre-wrap; }
+.ai-score { margin-top: 8px; font-size: 16px; color: #6B7280; }
+
+/* ===== Inputs / selects / textareas ===== */
+.section-1 input,
+.section-1 textarea,
+.section-1 select {
+  outline: none;
+  border-radius: 5px;
+  height: 2rem;
+  border: 1px solid #C2C2C2;
 }
 
-/* Por si tu regla genérica de .section-1 div afectaba el layout del ban */
-.section-1 > .ban-msg{
+.section-1 input:focus,
+.section-1 textarea:focus,
+.section-1 select:focus {
+  border: 2px solid #FFD146;
 }
 
-section{
-  background-color: #FFD146;
-  height: 4rem;
-  margin:2rem 0 2rem 0;
-  align-content: center;
-  padding-left: 1.5rem;
-  border-radius: 30px 0 0 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombras en los bordes */
-
+.section-1 textarea {
+  height: 6rem;
+  padding: 0.5rem;
+  resize: none;
+  overflow: auto;
 }
 
-section h1{
-  margin:0;
-  font-size:2rem;
-  font-weight: bolder;
-
-}
-
-
-.section-1{
-  width: 40%;
-  margin-right: 1rem;
-}
-
-.section-info-post{
-  width: 60%;
-  margin-left: 1rem;
-}
-
-.button-submit{
-  justify-self: center;
-  background: #FFD146;
-  border-radius: 10px;
+/* Solo las líneas de error en rojo */
+.section-1 .err-msg {
+  color: red;
+  height: 1.2rem;
   width: 100%;
-  margin:2rem 0 2rem 0;
+  font-size: 0.7rem;
+}
+
+/* Labels y títulos */
+mat-label {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.title {
+  text-align: center;
   font-weight: bolder;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle { margin: 0; }
+
+.text-area textarea {
+  resize: inherit;
+  height: 8rem;
+}
+
+/* Input de precio con prefijo S/. */
+.section-1 input {
+  width: 100%;
+  display: flex;
+  border-radius: 0 5px 5px 0;
+}
+
+.box-price { width: 100%; flex-direction: row; }
+
+/* Quitar flechas de number en WebKit */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.box-input-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.sign-money { border-radius: 5px 0 0 5px; }
+
+/* ===== Sección Imagen / Dropzone ===== */
+.section-2 p { text-align: center; }
+
+ngx-dropzone {
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  justify-content: center;
+}
+
+ngx-dropzone-image-preview {
+  width: 45%;
+  height: 10rem;
+  object-fit: contain;
+  overflow: hidden;
+  border: 1px solid #C2C2C2;
+}
+
+.sing-more {
+  width: 50%;
+  height: 10rem;
   display: flex;
   align-items: center;
-  flex-direction: row;
   justify-content: center;
-  gap: 0.5rem;
-}
-.btn-res{
-  display: none;
+  margin: 0;
 }
 
-.btn-desk{
-  display: felx;
+ngx-dropzone-label {
+  height: 8.8rem;
+  display: flex;
+  align-items: center;
 }
 
+/* Galería (si la usas) */
+.gallery-images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 10rem;
+  align-items: center;
+  justify-items: center;
+}
 
+.container-my-images {
+  width: 90%;
+  height: 90%;
+}
 
-@media (max-width: 900px){
+.container-my-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
 
-  .container-create-post{
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-  }
+/* ===== Responsive ===== */
+@media (max-width: 1100px) {
+  ngx-dropzone { flex-direction: column; }
+  ngx-dropzone-image-preview { width: 90%; }
+  .gallery-images { grid-template-columns: repeat(2, 1fr); }
+}
 
-  .btn-res{
-    display: flex;
-  }
+@media (max-width: 900px) {
+  ngx-dropzone-image-preview { width: 45%; }
+  ngx-dropzone { flex-direction: row; }
+  .gallery-images { grid-template-columns: repeat(4, 1fr); }
+}
 
-  .btn-desk{
-    display: none;
-  }
-
-  .section-1,.section-info-post{
-    width: 100%;
-    margin:0;
-  }
-
-  .container{
-    padding: 2rem;
-  }
-
-  section h1{
-    font-size:1.5rem;
-  }
+@media (max-width: 565px) {
+  ngx-dropzone { flex-direction: column; }
+  ngx-dropzone-image-preview { width: 90%; }
+  .section-1, .section-2 { padding: 1.5rem; }
+  .gallery-images { grid-template-columns: 1fr; }
 }
