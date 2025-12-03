@@ -1,44 +1,61 @@
 <div class="complete__container">
-  <ng-container *ngFor="let sent of this.offers.reverse(); let j = index">
+  <ng-container
+    *ngFor="let sent of offersReversed; let j = index; trackBy: trackByOffer"
+  >
     <mat-card *ngIf="sent.status == 'Aceptado'" class="example-card">
       <div class="exchange__info">
         <div class="product__offer">
-          <img class="card__img" src="{{ sent.productOwn.image }}">
+          <img class="card__img" [src]="sent.productOwn.image" />
           <p class="offer__text">Ofreciste un {{ sent.productOwn.name }}</p>
         </div>
-        <img class="arrows" src="./assets/images/icons/arrows.svg" alt="">
+        <img class="arrows" src="./assets/images/icons/arrows.svg" alt="" />
         <div class="product__get">
-          <img class="card__img" src="{{ sent.productChange.image }}">
+          <img class="card__img" [src]="sent.productChange.image" />
           <p class="get__text">Conseguiste un {{ sent.productChange.name }}</p>
         </div>
       </div>
-      <div class="review__info">
 
-        <button class="chat__button" (click)="openChat(sent.userChange,sent.id )">
-          <mat-icon>chat</mat-icon> Chat
+      <div class="review__info">
+        <button class="chat__button" (click)="openChat(sent.userChange, sent.id)">
+          <mat-icon>chat</mat-icon>
+          Chat
         </button>
-        <p class="question">¿Quieres puntuar la comunicación con {{ sent.userChange.name }}?</p>
+
+        <p class="question">
+          ¿Quieres puntuar la comunicación con {{ sent.userChange.name }}?
+        </p>
+
         <div class="qualification">
           <p class="point">Puntuación:</p>
           <div class="star-rating">
-            <mat-icon *ngFor="let icon of maxRatingArr; let indexRate = index"
-                      (mouseenter)="HandleMouseEnter(indexRate, j)"
-                      (mouseleave)="HandleMouseLeave(j)"
-                      (click)="Rating(indexRate, j)"
-                      [ngClass]="{checked: selectedStar[j] > indexRate}">
+            <mat-icon
+              *ngFor="let icon of maxRatingArr; let indexRate = index"
+              (mouseenter)="HandleMouseEnter(indexRate, j)"
+              (mouseleave)="HandleMouseLeave(j)"
+              (click)="Rating(indexRate, j)"
+              [ngClass]="{ checked: selectedStar[j] > indexRate }"
+            >
               star
             </mat-icon>
           </div>
         </div>
-        <p class="suggest">Deja una reseña y comparte tu experiencia con {{ sent.userChange.name }}:</p>
-        <textarea [(ngModel)]="inputs[j]"
-                  class="review__text"
-                  placeholder="Escribe aquí..."
-                  [disabled]="sent.reviewExisted"
+
+        <p class="suggest">
+          Deja una reseña y comparte tu experiencia con
+          {{ sent.userChange.name }}:
+        </p>
+
+        <textarea
+          [(ngModel)]="inputs[j]"
+          class="review__text"
+          placeholder="Escribe aquí..."
+          [disabled]="sent.reviewExisted"
         ></textarea>
-        <button class="send__review"
-                (click)="sendReview(j, sent.userChange.id, sent.id)"
-                [disabled]="sent.reviewExisted"
+
+        <button
+          class="send__review"
+          (click)="sendReview(j, sent.userChange.id, sent.id)"
+          [disabled]="sent.reviewExisted"
         >
           Publicar
         </button>
