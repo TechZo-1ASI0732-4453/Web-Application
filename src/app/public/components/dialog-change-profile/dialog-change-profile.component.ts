@@ -46,27 +46,13 @@ export class DialogChangeProfileComponent {
   async onChange() {
     if (!this.files.length) return;
     const userId = Number(this.data);
-    const user = await lastValueFrom(
-      this.usersService.getUserById(userId)
-    );
     const file = this.files[0];
     const { progress$, url$ } = this.storageService.uploadProfileImage(
       file,
       userId.toString()
     );
     progress$.subscribe();
-    const profileUrl = await lastValueFrom(url$);
-
-    const changeImage = {
-      id: user.id,
-      name: user.name,
-      username: user.username,
-      phoneNumber: user.phoneNumber,
-      profilePicture: profileUrl
-    };
-    await lastValueFrom(
-      this.usersService.changeProfileImage(userId, changeImage)
-    );
+    await lastValueFrom(url$);
 
     this.dialogRef.close(true);
   }

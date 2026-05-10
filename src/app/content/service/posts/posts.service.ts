@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   catchError,
-  forkJoin,
   map,
   Observable,
   of,
-  shareReplay,
-  switchMap
+  shareReplay
 } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { Products } from '../../model/products/products.model';
@@ -19,75 +17,14 @@ import {FlatProduct} from "../../model/flat-product/flat-product";
 export class PostsService {
   private readonly baseUrl = environment.baseUrl;
 
-  private districtCache = new Map<number, Observable<any>>();
-  private departmentCache = new Map<number, Observable<any>>();
-  private countryCache = new Map<number, Observable<any>>();
   private categoryCache = new Map<string, Observable<any>>();
 
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Products[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/v2/products`).pipe(
-      switchMap(products =>
-        forkJoin(
-          products.map(product => {
-            const districtId = product.location?.districtId ?? product.districtId;
-
-            if (!districtId) {
-              return of(
-                this.transformProduct({
-                  product,
-                  country: null,
-                  department: null,
-                  district: null
-                })
-              );
-            }
-
-            const district$ =
-              this.districtCache.get(districtId) ||
-              this.http
-                .get<any>(`${this.baseUrl}/api/v2/districts/${districtId}`)
-                .pipe(shareReplay(1));
-            this.districtCache.set(districtId, district$);
-
-            return district$.pipe(
-              switchMap(district => {
-                const department$ =
-                  this.departmentCache.get(district.departmentId) ||
-                  this.http
-                    .get<any>(
-                      `${this.baseUrl}/api/v2/departments/${district.departmentId}`
-                    )
-                    .pipe(shareReplay(1));
-                this.departmentCache.set(district.departmentId, department$);
-
-                return department$.pipe(
-                  switchMap(department => {
-                    const country$ =
-                      this.countryCache.get(department.countryId) ||
-                      this.http
-                        .get<any>(
-                          `${this.baseUrl}/api/v2/countries/${department.countryId}`
-                        )
-                        .pipe(shareReplay(1));
-                    this.countryCache.set(department.countryId, country$);
-
-                    return forkJoin({
-                      product: of(product),
-                      country: country$,
-                      department: of(department),
-                      district: of(district)
-                    });
-                  }),
-                  map(details => this.transformProduct(details))
-                );
-              })
-            );
-          })
-        )
-      )
-    );
+    return this.http
+      .get<any[]>(`${this.baseUrl}/api/v2/products`)
+      .pipe(map(products => products.map(p => this.transformProduct(p))));
   }
 
   getNewProductsF(){
@@ -207,67 +144,7 @@ export class PostsService {
   getProductsByUserId(userId: number): Observable<Products[]> {
     return this.http
       .get<any[]>(`${this.baseUrl}/api/v2/products/user/${userId}`)
-      .pipe(
-        switchMap(products =>
-          forkJoin(
-            products.map(product => {
-              const districtId = product.location?.districtId ?? product.districtId;
-
-              if (!districtId) {
-                return of(
-                  this.transformProduct({
-                    product,
-                    country: null,
-                    department: null,
-                    district: null
-                  })
-                );
-              }
-
-              const district$ =
-                this.districtCache.get(districtId) ||
-                this.http
-                  .get<any>(`${this.baseUrl}/api/v2/districts/${districtId}`)
-                  .pipe(shareReplay(1));
-              this.districtCache.set(districtId, district$);
-
-              return district$.pipe(
-                switchMap(district => {
-                  const department$ =
-                    this.departmentCache.get(district.departmentId) ||
-                    this.http
-                      .get<any>(
-                        `${this.baseUrl}/api/v2/departments/${district.departmentId}`
-                      )
-                      .pipe(shareReplay(1));
-                  this.departmentCache.set(district.departmentId, department$);
-
-                  return department$.pipe(
-                    switchMap(department => {
-                      const country$ =
-                        this.countryCache.get(department.countryId) ||
-                        this.http
-                          .get<any>(
-                            `${this.baseUrl}/api/v2/countries/${department.countryId}`
-                          )
-                          .pipe(shareReplay(1));
-                      this.countryCache.set(department.countryId, country$);
-
-                      return forkJoin({
-                        product: of(product),
-                        country: country$,
-                        department: of(department),
-                        district: of(district)
-                      });
-                    }),
-                    map(details => this.transformProduct(details))
-                  );
-                })
-              );
-            })
-          )
-        )
-      );
+      .pipe(map(products => products.map(p => this.transformProduct(p))));
   }
   getCategoriesProducts(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/api/v2/product-categories`)
@@ -305,14 +182,7 @@ export class PostsService {
     return request;
   }
 
-  private transformProduct(details: {
-    product: any;
-    country: any;
-    department: any;
-    district: any;
-  }): any {
-    const product = details.product;
-
+  private transformProduct(product: any): any {
     return {
       id: product.id?.toString() ?? null,
 
@@ -329,9 +199,9 @@ export class PostsService {
       available: product.available,
 
       location: {
-        country:    details.country?.name    ?? product.location?.countryName    ?? null,
-        department: details.department?.name ?? product.location?.departmentName ?? null,
-        district:   details.district?.name   ?? product.location?.districtName   ?? null
+        country:    product.location?.countryName    ?? null,
+        department: product.location?.departmentName ?? null,
+        district:   product.location?.districtName   ?? null
       },
 
       category: product.productCategory?.name ?? null
